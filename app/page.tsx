@@ -1,3 +1,5 @@
+import StatisticCard from "@/components/home/StatisticCard";
+import { STATISTICS } from "@/utils/Constants";
 import Image from "next/image";
 
 export default function Home() {
@@ -90,6 +92,32 @@ export default function Home() {
             height={500}
             className="w-full h-auto"
           />
+        </div>
+      </section>
+
+      {/* Statistics section */}
+      <section
+        className="bg-neutral-200 w-full py-12 px-6 md:px-12 flex 
+              flex-col flex-wrap items-center"
+      >
+        <div className="flex items-center justify-center gap-5 md:gap-8 mb-5">
+          <h1 className="font-bold text-base lg:text-[40px] md:text-[30px]">
+            Creating Better Access to Opportunities
+          </h1>
+        </div>
+
+        <div
+          className="flex flex-col  lg:flex-row items-center
+                         justify-center gap-8 md:gap-12 md:mt-20 md:mb-20"
+        >
+          {STATISTICS.map((card) => (
+            <StatisticCard
+              key={card.id}
+              title={card.title}
+              value={card.value}
+              Icon={card.icon}
+            />
+          ))}
         </div>
       </section>
     </main>

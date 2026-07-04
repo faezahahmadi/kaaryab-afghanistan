@@ -1,3 +1,4 @@
+import { Briefcase,  Building2, Users } from "lucide-react";
 import { NavLink, Categories} from "../types/layout.types";
 
 export const NAV_LINKS: NavLink[] = [
@@ -17,3 +18,9 @@ export const CATEGORIES: Categories[] = [
   { label: "Training Program" },
   { label: "Remote work" },
   ];
+
+export const STATISTICS=[
+  {id: 1, value: "5000+", title: "platform Users", icon: Users  },
+  {id: 2, value: "1200+", title: "Shared Opportunities", icon: Briefcase },
+  {id: 3, value: "150+", title: "Partner Organization", icon: Building2 }
+]
