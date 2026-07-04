@@ -1,4 +1,4 @@
-import { NavLink} from "./types/layout.types";
+import { NavLink, Categories} from "../types/layout.types";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
@@ -9,3 +9,11 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Contact", href: "/contact" },
     { label: "About", href: "/about" },
 ];
+export const CATEGORIES: Categories[] = [
+  { label: "Jobs" },
+  { label: "Internship" },
+  { label: "Scolarship" },
+  { label: "Online Courses" },
+  { label: "Training Program" },
+  { label: "Remote work" },
+  ];

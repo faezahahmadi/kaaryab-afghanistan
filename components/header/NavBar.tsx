@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import NavLinks from "./NavLinks";
-import MobileMenu from "@/components/MobileMenue";
+import MobileMenu from "@/components/header/MobileMenue";
 
 export default function NavBar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
