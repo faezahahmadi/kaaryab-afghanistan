@@ -7,14 +7,14 @@ export default function Home() {
     <main className="flex flex-col items-center justify-between">
       <section
         className="
-    relative
-    flex flex-col
-    lg:grid lg:grid-cols-12 items-start
-    w-full gap-5
-    min-h-screen
-    pt-16 md:pt-24
-    pb-16 md:pb-32
-    px-5 md:px-10 lg:px-20
+      relative
+      flex flex-col
+      lg:grid lg:grid-cols-12 items-start
+      w-full gap-5
+      min-h-screen
+      pt-16 md:pt-24
+      pb-16 md:pb-32
+      px-5 md:px-10 lg:px-20
     
   "
       >
@@ -118,6 +118,38 @@ export default function Home() {
               Icon={card.icon}
             />
           ))}
+        </div>
+      </section>
+
+      {/*Fetured Project*/}
+      <section></section>
+      <section
+        className="bg-primary-500 w-full py-12 px-6 md:px-12 flex 
+              flex-col flex-wrap items-center"
+      >
+        <div className="flex flex-col items-center justify-center gap-5 md:gap-8 mb-5">
+          <h1 className="font-bold text-base text-center md:text-[30px]">
+            Your Next Opportunity Could Change Your Future
+          </h1>
+          <p className="text-base text-neutral-200 max-w-2xl text-center">
+            Start exploring opportunities today and take the next step toward
+            your goals.
+          </p>
+          <button
+            className="
+    mt-8 
+    h-12 md:h-14
+    px-8 
+    rounded-full
+    bg-cta
+    text-white
+    cursor-pointer hover:bg-cta-hover
+    text-base md:text-base
+    shadow-button
+  "
+          >
+            Explore Opportunities
+          </button>
         </div>
       </section>
     </main>
