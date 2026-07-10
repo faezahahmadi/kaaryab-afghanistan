@@ -26,8 +26,8 @@ export default async function OpportunityDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-16">
-      <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:py-16">
+      <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
         <Link
           href="/opportunities"
           className="text-sm font-medium text-emerald-600 hover:underline"
