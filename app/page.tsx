@@ -17,17 +17,11 @@ export default function Home() {
       <section className="w-full bg-slate-50 py-16 px-5 md:px-10 lg:px-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
-            <p className="text-sm uppercase tracking-[0.35em] text-emerald-600">
+            <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 mb-5">
               Find the right opportunity
             </p>
             <h1
-              className={`
-    font-bold
-    font-sans
-    leading-tight
-    text-4xl
-    sm:text-5xl
-    md:text-6xl
+              className={`font-bold font-sans leading-tight text-4xl sm:text-5xl md:text-[54px]
       `}
               style={{ textShadow: "0px 4px 10px rgb(156, 155, 155)" }}
             >
@@ -54,13 +48,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="order-first w-full lg:order-last lg:col-span-5">
-            <div className="overflow-hidden rounded-4xl bg-linear-to-br from-primary-50 via-slate-100 to-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.45)]">
+          <div className="w-full lg:order-last lg:col-span-5">
+            <div
+              className="overflow-hidden rounded-4xl bg-linear-to-br
+             from-primary-50 via-slate-100 to-white 
+             shadow-[0_30px_60px_-30px_rgba(15,23,42,0.45)]"
+            >
               <Image
                 src="/common/hero-image.jpg"
                 alt="Hero Image"
                 width={700}
-                height={700}
+                height={900}
                 className="h-full w-full object-cover"
               />
             </div>
@@ -70,7 +68,7 @@ export default function Home() {
 
       {/* Statistics section */}
       <section
-        className=" w-full rounded-3xl border  flex flex-col items-center justify-center
+        className=" w-full  border  flex flex-col items-center justify-center
              border-slate-200 bg-neutral-300 p-6 shadow-lg sm:p-8"
       >
         <div className="flex flex-col mb-5">

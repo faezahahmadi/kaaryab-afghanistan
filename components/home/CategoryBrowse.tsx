@@ -13,7 +13,7 @@ export default function CategoryBrowse() {
   return (
     <section
       className="mx-auto w-full max-w-6xl rounded-3xl  border-2 my-10
-             border-slate-200 bg-white p-6 shadow-lg sm:p-8 hover:scale-105"
+             border-slate-200 bg-white p-6 shadow-lg sm:p-8 "
     >
       <div
         className="flex flex-col gap-10 sm:flex-row 
@@ -41,7 +41,10 @@ export default function CategoryBrowse() {
           <Link
             key={category}
             href={`/opportunities?category=${encodeURIComponent(category)}`}
-            className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm font-semibold text-slate-800 transition hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700"
+            className="inline-flex min-h-12 items-center justify-center rounded-2xl 
+            border border-slate-200 bg-slate-50 px-4 py-3 text-center text-sm
+             font-semibold text-slate-800 transition hover:border-emerald-500
+              hover:bg-emerald-50 hover:text-emerald-700 hover:scale-105"
           >
             {category}
           </Link>

@@ -1,10 +1,11 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { findOpportunityById } from "@/utils/mockData";
+"use client";
 
-type OpportunityDetailPageProps = {
-  params: Promise<{ id: string }>;
-};
+"use client";
+
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
+import { useOpportunityContext } from "@/context/OpportunityContext";
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
@@ -15,14 +16,54 @@ function DetailRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-export default async function OpportunityDetailPage({
-  params,
-}: OpportunityDetailPageProps) {
-  const { id } = await params;
-  const opportunity = findOpportunityById(id);
+export default function OpportunityDetailPage() {
+  const params = useParams<{ id: string }>();
+  const router = useRouter();
+  const { opportunities } = useOpportunityContext();
+
+  const { deleteOpportunity, toggleSavedOpportunity, isSaved } =
+    useOpportunityContext();
+  const [feedback, setFeedback] = useState("");
+
+  const opportunity = useMemo(() => {
+    return opportunities.find((item) => item.id === params.id);
+  }, [opportunities, params.id]);
+
+  const saved = opportunity ? isSaved(opportunity.id) : false;
+
+  const handleDelete = () => {
+    if (!opportunity) return;
+    deleteOpportunity(opportunity.id);
+    router.push("/opportunities");
+  };
+
+  const handleSaveToggle = () => {
+    if (!opportunity) return;
+    toggleSavedOpportunity(opportunity);
+    setFeedback(
+      saved ? "Removed from saved opportunities." : "Saved to your bookmarks.",
+    );
+  };
 
   if (!opportunity) {
-    notFound();
+    return (
+      <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:py-16">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <h1 className="text-2xl font-semibold text-slate-900">
+            Opportunity not found
+          </h1>
+          <p className="mt-3 text-sm text-slate-600">
+            The selected opportunity could not be located.
+          </p>
+          <Link
+            href="/opportunities"
+            className="mt-6 inline-flex rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+          >
+            View all opportunities
+          </Link>
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -45,6 +86,36 @@ export default async function OpportunityDetailPage({
           <p className="mt-3 text-lg text-slate-700">
             Organization: {opportunity.organization}
           </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={handleSaveToggle}
+              className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+            >
+              {saved ? "Remove Save" : "Save Opportunity"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                router.push(`/opportunities/${opportunity.id}/edit`)
+              }
+              className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDelete}
+              className="rounded-full border border-rose-200 bg-white px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50"
+            >
+              Delete
+            </button>
+          </div>
+          {feedback ? (
+            <p className="mt-2 text-sm text-emerald-700">{feedback}</p>
+          ) : null}
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">

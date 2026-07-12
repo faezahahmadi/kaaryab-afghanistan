@@ -4,12 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import OpportunityCard from "./OpportunityCard";
 import type { Opportunity } from "@/utils/mockData";
-import { allOpportunities } from "@/utils/mockData";
+import { useOpportunityContext } from "@/context/OpportunityContext";
 
 const PAGE_SIZE = 9;
 
 export default function OpportunitiesList() {
   const searchParams = useSearchParams();
+  const { opportunities } = useOpportunityContext();
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("All Locations");
   const [deadlineFilter, setDeadlineFilter] = useState("All");
@@ -17,14 +18,14 @@ export default function OpportunitiesList() {
   const [page, setPage] = useState(1);
 
   const locations = useMemo(() => {
-    const set = new Set<string>(allOpportunities.map((o) => o.location));
+    const set = new Set<string>(opportunities.map((o) => o.location));
     return ["All Locations", ...Array.from(set)];
-  }, []);
+  }, [opportunities]);
 
   const categories = useMemo(() => {
-    const set = new Set<string>(allOpportunities.map((o) => o.category));
+    const set = new Set<string>(opportunities.map((o) => o.category));
     return ["All", ...Array.from(set)];
-  }, []);
+  }, [opportunities]);
 
   useEffect(() => {
     const paramCategory = searchParams.get("category");
@@ -40,7 +41,7 @@ export default function OpportunitiesList() {
   const filtered = useMemo(() => {
     const now = new Date();
 
-    return allOpportunities.filter((o: Opportunity) => {
+    return opportunities.filter((o: Opportunity) => {
       if (query && !o.title.toLowerCase().includes(query.toLowerCase())) {
         return false;
       }
@@ -64,7 +65,7 @@ export default function OpportunitiesList() {
 
       return true;
     });
-  }, [query, location, deadlineFilter, category]);
+  }, [opportunities, query, location, deadlineFilter, category]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
 
@@ -80,7 +81,7 @@ export default function OpportunitiesList() {
 
   return (
     <div>
-      <div className="mb-6 grid gap-3 sm:grid-cols-1 md:grid-cols-3">
+      <div className="mb-6 grid gap-3 md:grid-cols-3">
         <input
           value={query}
           onChange={(e) => {
