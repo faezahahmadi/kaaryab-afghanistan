@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import OpportunityCard from "./OpportunityCard";
 import type { Opportunity } from "@/utils/mockData";
 import { allOpportunities } from "@/utils/mockData";
@@ -8,6 +9,7 @@ import { allOpportunities } from "@/utils/mockData";
 const PAGE_SIZE = 9;
 
 export default function OpportunitiesList() {
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("All Locations");
   const [deadlineFilter, setDeadlineFilter] = useState("All");
@@ -23,6 +25,17 @@ export default function OpportunitiesList() {
     const set = new Set<string>(allOpportunities.map((o) => o.category));
     return ["All", ...Array.from(set)];
   }, []);
+
+  useEffect(() => {
+    const paramCategory = searchParams.get("category");
+    const validCategory =
+      paramCategory && categories.includes(paramCategory)
+        ? paramCategory
+        : null;
+
+    setCategory(validCategory);
+    setPage(1);
+  }, [categories, searchParams]);
 
   const filtered = useMemo(() => {
     const now = new Date();

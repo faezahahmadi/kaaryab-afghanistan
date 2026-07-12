@@ -7,7 +7,7 @@ type OpportunityCardProps = {
 
 export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:scale-105">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-600">

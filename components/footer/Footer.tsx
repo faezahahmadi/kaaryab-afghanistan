@@ -28,7 +28,6 @@ const Footer: React.FC<FooterProps> = () => {
               Helping Afghan youth discover opportunities for education,
               employment, and professional growth.
             </p>
-            <SocialIcons />
           </div>
 
           {/* Column 2: Navigation */}
@@ -91,17 +90,7 @@ const Footer: React.FC<FooterProps> = () => {
               <p className="text-sm text-white/70 italic mt-2">
                 Let&apos;s find the amazing opportunity together.
               </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 
-                  w-[268px] h-[48px] bg-cta text-white font-semibold 
-                  rounded-[8px] text-[16px] leading-[24px] tracking-[0.01em] 
-                  hover:bg-secondary-300  transition-colors duration-200 
-                  shadow-lg shadow-black/10"
-              >
-                Let&apos;s Talk
-                <span className="text-lg">→</span>
-              </Link>
+              <SocialIcons />
             </>
           </div>
         </div>

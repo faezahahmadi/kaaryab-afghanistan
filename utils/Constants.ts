@@ -16,7 +16,7 @@ export const CATEGORIES: Categories[] = [
   { label: "Scolarship" },
   { label: "Online Courses" },
   { label: "Training Program" },
-  { label: "Remote work" },
+  { label: "Volnteer Work" },
   ];
 
 export const STATISTICS=[
