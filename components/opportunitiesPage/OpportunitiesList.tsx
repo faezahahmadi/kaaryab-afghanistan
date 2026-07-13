@@ -40,6 +40,7 @@ export default function OpportunitiesList() {
 
   const filtered = useMemo(() => {
     const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     return opportunities.filter((o: Opportunity) => {
       if (query && !o.title.toLowerCase().includes(query.toLowerCase())) {
@@ -51,16 +52,20 @@ export default function OpportunitiesList() {
       if (category && o.category !== category) return false;
 
       if (deadlineFilter === "Next7") {
-        const d = new Date(o.deadline);
-        const diff = (d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
-        if (diff < 0 || diff > 7) return false;
+        const deadlineDate = new Date(`${o.deadline}T00:00:00`);
+        const diffDays = Math.round(
+          (deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+        );
+        if (diffDays < 0 || diffDays > 7) return false;
       } else if (deadlineFilter === "Next30") {
-        const d = new Date(o.deadline);
-        const diff = (d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
-        if (diff < 0 || diff > 30) return false;
+        const deadlineDate = new Date(`${o.deadline}T00:00:00`);
+        const diffDays = Math.round(
+          (deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24),
+        );
+        if (diffDays < 0 || diffDays > 30) return false;
       } else if (deadlineFilter === "Past") {
-        const d = new Date(o.deadline);
-        if (d >= now) return false;
+        const deadlineDate = new Date(`${o.deadline}T00:00:00`);
+        if (deadlineDate >= today) return false;
       }
 
       return true;
