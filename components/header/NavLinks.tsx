@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/utils/Constants";
+import { useTheme } from "@/context/ThemeContext";
 
 interface NavLinksProps {
   onLinkClick?: () => void;
@@ -11,6 +12,7 @@ interface NavLinksProps {
 
 const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick, mobile = false }) => {
   const pathname = usePathname();
+  const { isDark } = useTheme();
 
   return (
     <ul
@@ -29,7 +31,11 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick, mobile = false }) => {
               onClick={onLinkClick}
               className={`relative text-base font-medium whitespace-nowrap 
                 transition-colors duration-200 hover:text-brand-600 ${
-                  isActive ? "text-primary-600" : "text-neutral-700"
+                  isActive
+                    ? "text-primary-600"
+                    : isDark
+                      ? "text-slate-200"
+                      : "text-neutral-700"
                 }`}
             >
               {link.label}

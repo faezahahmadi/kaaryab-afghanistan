@@ -1,6 +1,9 @@
+"use client";
+
 import CategoryBrowse from "@/components/home/CategoryBrowse";
 import StatisticCard from "@/components/home/StatisticCard";
 import OpportunityCard from "@/components/opportunitiesPage/OpportunityCard";
+import { useTheme } from "@/context/ThemeContext";
 import { STATISTICS } from "@/utils/Constants";
 import allOpportunities from "@/utils/mockData";
 import Image from "next/image";
@@ -8,13 +11,20 @@ import Link from "next/link";
 import type { Opportunity } from "@/utils/mockData";
 
 export default function Home() {
+  const { isDark } = useTheme();
   const featuredOpportunities = allOpportunities.filter(
     (opportunity) => opportunity.featured === true,
   );
 
   return (
-    <main className="flex flex-col items-center justify-between">
-      <section className="w-full bg-slate-50 py-16 px-5 md:px-10 lg:px-20">
+    <main
+      className={`flex flex-col items-center justify-between transition-colors duration-200
+         ${isDark ? "bg-slate-950 text-slate-50" : "bg-white text-slate-900"}`}
+    >
+      <section
+        className={`w-full py-16 px-5 md:px-10 lg:px-20
+           ${isDark ? "bg-slate-900" : "bg-slate-50"}`}
+      >
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <p className="text-sm uppercase tracking-[0.35em] text-emerald-600 mb-5">
@@ -30,7 +40,10 @@ export default function Home() {
               <span className="text-primary-600"> learn</span>, and build your
               future.
             </h1>
-            <p className="mt-6 max-w-2xl text-base font-medium text-slate-600 sm:text-lg md:text-xl lg:text-2xl">
+            <p
+              className={`mt-6 max-w-2xl text-base font-medium sm:text-lg md:text-xl lg:text-2xl
+                 ${isDark ? "text-slate-300" : "text-slate-600"}`}
+            >
               Browse jobs, scholarships, internships, courses, and training
               programs — all in one polished space designed for Afghan youth.
             </p>
@@ -38,11 +51,15 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link
                 href="/opportunities"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-cta px-8 text-base font-semibold text-white shadow-button transition hover:bg-cta-hover"
+                className="inline-flex h-12 items-center justify-center rounded-full
+                 bg-cta px-8 text-base font-semibold text-white shadow-button transition
+                  hover:bg-cta-hover"
               >
                 Explore Opportunities
               </Link>
-              <button className="inline-flex h-12 items-center justify-center rounded-full bg-slate-900 px-8 text-base font-semibold text-white shadow-button transition hover:bg-slate-800">
+              <button className="inline-flex h-12 items-center justify-center rounded-full
+               bg-slate-900 px-8 text-base font-semibold text-white shadow-button transition
+                hover:bg-slate-800">
                 Learn More
               </button>
             </div>
@@ -68,8 +85,8 @@ export default function Home() {
 
       {/* Statistics section */}
       <section
-        className=" w-full  border  flex flex-col items-center justify-center
-             border-slate-200 bg-neutral-300 p-6 shadow-lg sm:p-8"
+        className={`w-full border flex flex-col items-center justify-center p-6 shadow-lg sm:p-8
+           ${isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-neutral-300"}`}
       >
         <div className="flex flex-col mb-5">
           <p
@@ -78,7 +95,10 @@ export default function Home() {
           >
             Statistics
           </p>
-          <h1 className="font-bold text-3xl md:text-[30px] text-center">
+          <h1
+            className={`font-bold text-3xl md:text-[30px] text-center
+               ${isDark ? "text-slate-50" : "text-slate-900"}`}
+          >
             Creating Better Access to Opportunities
           </h1>
         </div>
@@ -99,8 +119,14 @@ export default function Home() {
       </section>
 
       {/*Fetured Project*/}
-      <section className=" flex flex-col w-full py-12 px-6 md:px-12">
-        <h1 className="font-bold  text-3xl  sm:text-4xl my-5 text-center">
+      <section
+        className={`flex flex-col w-full py-12 px-6 md:px-12
+           ${isDark ? "bg-slate-950" : "bg-white"}`}
+      >
+        <h1
+          className={`font-bold text-3xl sm:text-4xl my-5 text-center
+             ${isDark ? "text-slate-50" : "text-slate-900"}`}
+        >
           Featured Opportunities
         </h1>
         <div
@@ -117,7 +143,10 @@ export default function Home() {
 
       <CategoryBrowse />
 
-      <section className="w-full bg-linear-to-r from-primary-500 via-primary-800 to-secondary-400 py-16 px-5 text-white md:px-10 lg:px-20">
+      <section
+        className="w-full bg-linear-to-r from-primary-500 via-primary-800
+       to-secondary-400 py-16 px-5 text-white md:px-10 lg:px-20"
+      >
         <div className="mx-auto max-w-6xl text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-emerald-200">
             Ready when you are
@@ -131,7 +160,9 @@ export default function Home() {
           </p>
           <Link
             href="/opportunities"
-            className="mt-8 inline-flex h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 sm:text-base"
+            className="mt-8 inline-flex h-14 items-center justify-center rounded-full
+             bg-white px-8 text-sm font-semibold text-slate-900 transition hover:bg-slate-100
+              sm:text-base"
           >
             View All Opportunities
           </Link>

@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { AddOppSchema } from "@/app/validation/AddOppSchema";
 import { useOpportunityContext } from "@/context/OpportunityContext";
@@ -31,6 +32,7 @@ type FormData = {
 export default function AddOpportunity() {
   const router = useRouter();
   const { addOpportunity } = useOpportunityContext();
+  const { isDark } = useTheme();
   const [submitMessage, setSubmitMessage] = useState("");
   const {
     register,
@@ -84,24 +86,37 @@ export default function AddOpportunity() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+    <main
+      className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200
+         ${isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"}`}
+    >
+      <div
+        className={`mx-auto max-w-5xl rounded-3xl border p-6 shadow-sm sm:p-8 lg:p-10 
+          ${isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"}`}
+      >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Publish an opportunity
             </p>
-            <h1 className="mt-2 text-3xl font-bold text-slate-900">
+            <h1
+              className={`mt-2 text-3xl font-bold 
+                ${isDark ? "text-slate-50" : "text-slate-900"}`}
+            >
               Add a new opportunity
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+            <p
+              className={`mt-3 max-w-2xl text-sm leading-7
+                 ${isDark ? "text-slate-300" : "text-slate-600"}`}
+            >
               Use this form to create a listing that mirrors the structure used
               across the opportunity detail view and the catalog.
             </p>
           </div>
           <Link
             href="/opportunities"
-            className="inline-flex items-center text-sm font-medium text-emerald-600 hover:underline"
+            className="inline-flex items-center text-sm font-medium
+             text-emerald-600 hover:underline"
           >
             ← Back to opportunities
           </Link>
@@ -109,7 +124,10 @@ export default function AddOpportunity() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-8">
           {submitMessage ? (
-            <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+            <div
+              className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 
+            text-sm text-emerald-700"
+            >
               {submitMessage}
             </div>
           ) : null}
@@ -125,7 +143,8 @@ export default function AddOpportunity() {
               <input
                 id="title"
                 {...register("title")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm 
+                outline-none transition focus:border-emerald-500"
                 placeholder="e.g. Software Engineer"
               />
               {errors.title ? (
@@ -143,7 +162,8 @@ export default function AddOpportunity() {
               <input
                 id="organization"
                 {...register("organization")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm
+                 outline-none transition focus:border-emerald-500"
                 placeholder="e.g. Karyaab Afghanistan"
               />
               {errors.organization ? (
@@ -163,7 +183,8 @@ export default function AddOpportunity() {
               <select
                 id="category"
                 {...register("category")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 
+                text-sm outline-none transition focus:border-emerald-500"
               >
                 <option value="Job">Job</option>
                 <option value="Scholarship">Scholarship</option>
@@ -189,7 +210,8 @@ export default function AddOpportunity() {
               <input
                 id="type"
                 {...register("type")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 
+                text-sm outline-none transition focus:border-emerald-500"
                 placeholder="Full-time / Contract / Scholarship"
               />
               {errors.type ? (
@@ -207,7 +229,8 @@ export default function AddOpportunity() {
               <input
                 id="location"
                 {...register("location")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3
+                 text-sm outline-none transition focus:border-emerald-500"
                 placeholder="Kabul, Afghanistan"
               />
               {errors.location ? (
@@ -270,7 +293,8 @@ export default function AddOpportunity() {
               <input
                 id="applyLink"
                 {...register("applyLink")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3
+                 text-sm outline-none transition focus:border-emerald-500"
                 placeholder="https://example.com/apply"
               />
               {errors.applyLink ? (
@@ -292,7 +316,8 @@ export default function AddOpportunity() {
               id="description"
               rows={6}
               {...register("description")}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+              className="w-full rounded-xl border border-slate-200 px-4
+               py-3 text-sm outline-none transition focus:border-emerald-500"
               placeholder="Share a concise overview of the opportunity and why it matters."
             />
             {errors.description ? (
@@ -314,7 +339,8 @@ export default function AddOpportunity() {
                 id="requirements"
                 rows={4}
                 {...register("requirements")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3
+                 text-sm outline-none transition focus:border-emerald-500"
                 placeholder="Bachelor's degree, 2+ years experience, strong communication"
               />
               {errors.requirements ? (
@@ -335,7 +361,8 @@ export default function AddOpportunity() {
                 id="tags"
                 rows={4}
                 {...register("tags")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3
+                 text-sm outline-none transition focus:border-emerald-500"
                 placeholder="Remote, Tech, NGO"
               />
               {errors.tags ? (
@@ -344,12 +371,16 @@ export default function AddOpportunity() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div
+            className="flex flex-wrap items-center justify-between gap-4 
+              rounded-2xl border border-slate-200 bg-slate-50 p-4"
+          >
             <label className="flex items-center gap-3 text-sm font-medium text-slate-700">
               <input
                 type="checkbox"
                 {...register("featured")}
-                className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                className="h-4 w-4 rounded border-slate-300 text-emerald-600
+                 focus:ring-emerald-500"
               />
               Mark as featured opportunity
             </label>
@@ -357,7 +388,10 @@ export default function AddOpportunity() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex items-center justify-center rounded-full
+               bg-emerald-600 px-6 py-3 text-sm font-semibold text-white 
+               shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed 
+               disabled:opacity-70"
             >
               {isSubmitting ? "Publishing..." : "Publish opportunity"}
             </button>

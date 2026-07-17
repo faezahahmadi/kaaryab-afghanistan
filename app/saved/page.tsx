@@ -3,19 +3,25 @@
 import Link from "next/link";
 import OpportunityCard from "@/components/opportunitiesPage/OpportunityCard";
 import { useOpportunityContext } from "@/context/OpportunityContext";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function SavedOpportunities() {
   const { savedOpportunities } = useOpportunityContext();
+  const { isDark } = useTheme();
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <main
+      className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200 ${isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"}`}
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Your bookmarks
             </p>
-            <h1 className="mt-2 text-3xl font-bold text-slate-900">
+            <h1
+              className={`mt-2 text-3xl font-bold ${isDark ? "text-slate-50" : "text-slate-900"}`}
+            >
               Saved opportunities
             </h1>
             <p className="mt-3 text-sm leading-7 text-slate-600">
@@ -37,8 +43,12 @@ export default function SavedOpportunities() {
             ))}
           </div>
         ) : (
-          <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">
+          <div
+            className={`rounded-3xl border border-dashed p-10 text-center shadow-sm ${isDark ? "border-slate-700 bg-slate-900" : "border-slate-300 bg-white"}`}
+          >
+            <h2
+              className={`text-xl font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
+            >
               No saved opportunities yet
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">

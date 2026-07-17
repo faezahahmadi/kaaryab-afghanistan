@@ -2,6 +2,7 @@
 
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ export default function Contact() {
     message: "",
   });
   const [submitMessage, setSubmitMessage] = useState("");
+  const { isDark } = useTheme();
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -27,18 +29,26 @@ export default function Contact() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      <section className="border-b border-slate-200 bg-white">
+    <main
+      className={`min-h-screen transition-colors duration-200 ${isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"}`}
+    >
+      <section
+        className={`border-b ${isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"}`}
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-600">
                 Contact us
               </p>
-              <h1 className="mt-4 text-4xl font-bold text-slate-900 sm:text-5xl">
+              <h1
+                className={`mt-4 text-4xl font-bold sm:text-5xl ${isDark ? "text-slate-50" : "text-slate-900"}`}
+              >
                 Get in touch
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+              <p
+                className={`mt-5 max-w-2xl text-lg leading-8 ${isDark ? "text-slate-300" : "text-slate-600"}`}
+              >
                 Whether you want to ask a question, share an opportunity, or
                 collaborate with KaarYab Afghanistan, we would love to hear from
                 you.
@@ -81,16 +91,22 @@ export default function Contact() {
       </section>
 
       <section className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-5xl rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <div
+          className={`mx-auto max-w-5xl rounded-4xl border p-6 shadow-sm sm:p-8 lg:p-10 ${isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"}`}
+        >
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
                 Send a message
               </p>
-              <h2 className="mt-3 text-3xl font-semibold text-slate-900">
+              <h2
+                className={`mt-3 text-3xl font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
+              >
                 We are here to help you take the next step.
               </h2>
-              <p className="mt-4 text-base leading-8 text-slate-600">
+              <p
+                className={`mt-4 text-base leading-8 ${isDark ? "text-slate-300" : "text-slate-600"}`}
+              >
                 Share a few details about your request and we will get back to
                 you with the right guidance.
               </p>
@@ -131,7 +147,9 @@ export default function Contact() {
                 </label>
               </div>
 
-              <label className="block space-y-2 text-sm font-medium text-slate-700">
+              <label
+                className={`block space-y-2 text-sm font-medium ${isDark ? "text-slate-200" : "text-slate-700"}`}
+              >
                 <span>Message</span>
                 <textarea
                   name="message"

@@ -24,7 +24,11 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
   };
 
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <article
+      className="rounded-xl border border-slate-200
+     bg-white p-6 shadow-sm
+     transition hover:-translate-y-1 hover:shadow-md"
+    >
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-600">

@@ -5,6 +5,7 @@ import "./globals.css";
 import NavBar from "@/components/header/NavBar";
 import Footer from "@/components/footer/Footer";
 import { OpportunityProvider } from "@/context/OpportunityContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,12 +32,14 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <OpportunityProvider>
-          <NavBar />
-          {children}
-          <Footer />
-        </OpportunityProvider>
+      <body className="min-h-full flex flex-col bg-white text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-50">
+        <ThemeProvider>
+          <OpportunityProvider>
+            <NavBar />
+            {children}
+            <Footer />
+          </OpportunityProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
