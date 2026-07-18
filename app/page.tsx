@@ -57,11 +57,15 @@ export default function Home() {
               >
                 Explore Opportunities
               </Link>
-              <button className="inline-flex h-12 items-center justify-center rounded-full
-               bg-slate-900 px-8 text-base font-semibold text-white shadow-button transition
-                hover:bg-slate-800">
+              <button
+                className={`inline-flex h-12 items-center justify-center rounded-full px-8 text-base font-semibold shadow-button transition ${
+                  isDark
+                    ? "bg-emerald-400 text-white hover:bg-emerald-300"
+                    : "bg-white text-slate-900 hover:bg-slate-100"
+                }`}
+              >
                 Learn More
-              </button>
+              </button>{" "}
             </div>
           </div>
 
