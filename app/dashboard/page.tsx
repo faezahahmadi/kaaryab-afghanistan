@@ -431,24 +431,24 @@ export default function Dashboard() {
                           : "border-slate-100 hover:border-slate-200"
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-3">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                         <div className="min-w-0 flex-1">
                           <p
-                            className={`truncate font-semibold ${
-                              isDark ? "text-slate-50" : "text-slate-900"
-                            }`}
+                            className={`truncate font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
                           >
                             {opp.title}
                           </p>
                           <p
-                            className={`mt-0.5 text-sm ${
-                              isDark ? "text-slate-400" : "text-slate-500"
-                            }`}
+                            className={`mt-0.5 text-sm
+                               ${isDark ? "text-slate-400" : "text-slate-500"}`}
                           >
                             {opp.organization}
                           </p>
                         </div>
-                        <div className="flex flex-col items-end gap-1">
+                        <div
+                          className="flex items-center justify-between gap-2 sm:flex-col 
+                            sm:items-end sm:gap-1"
+                        >
                           <span
                             className={`rounded-full px-3 py-1 text-xs font-semibold ${
                               isUrgent
@@ -462,13 +462,12 @@ export default function Dashboard() {
                           >
                             {days} days
                           </span>
-                          <span
-                            className={`text-xs ${
-                              isDark ? "text-slate-500" : "text-slate-400"
-                            }`}
+                          <div
+                            className={`flex flex-col items-end gap-1 text-xs
+                            ${isDark ? "text-slate-500" : "text-slate-400"}`}
                           >
                             {formatDate(opp.deadline)}
-                          </span>
+                          </div>
                         </div>
                       </div>
                     </Link>
@@ -536,30 +535,28 @@ export default function Dashboard() {
                         : "border-slate-100 hover:border-slate-200"
                     }`}
                   >
-                    <div className="flex items-start justify-between gap-3">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                       <div className="min-w-0 flex-1">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">{opp.category}</span>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span
+                            className={`shrink-0 text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}
+                          >
+                            {opp.category}
+                          </span>
                           <p
-                            className={`truncate font-semibold ${
-                              isDark ? "text-slate-50" : "text-slate-900"
-                            }`}
+                            className={`min-w-0 truncate font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
                           >
                             {opp.title}
                           </p>
                         </div>
                         <p
-                          className={`mt-0.5 text-sm ${
-                            isDark ? "text-slate-400" : "text-slate-500"
-                          }`}
+                          className={`mt-0.5 text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}
                         >
                           {opp.organization} • {opp.category}
                         </p>
                       </div>
                       <span
-                        className={`whitespace-nowrap text-xs ${
-                          isDark ? "text-slate-500" : "text-slate-400"
-                        }`}
+                        className={`text-xs sm:whitespace-nowrap ${isDark ? "text-slate-500" : "text-slate-400"}`}
                       >
                         {formatDate(opp.postedDate)}
                       </span>
