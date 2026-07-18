@@ -172,11 +172,11 @@ export default function OpportunitiesList() {
       </div>
 
       {/* Pagination */}
-      <div className="mt-8 flex items-center justify-center gap-3">
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         <button
           onClick={() => goToPage(page - 1)}
           disabled={page === 1}
-          className={`rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
+          className={`shrink-0 rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
             isDark
               ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
               : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
@@ -185,14 +185,14 @@ export default function OpportunitiesList() {
           Prev
         </button>
 
-        <div className="flex items-center gap-2">
+        <div className="flex max-w-[65vw] items-center gap-1.5 overflow-x-auto py-1 sm:max-w-none sm:gap-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {Array.from({ length: totalPages }).map((_, i) => {
             const n = i + 1;
             return (
               <button
                 key={n}
                 onClick={() => goToPage(n)}
-                className={`h-8 w-8 rounded-full text-sm ${
+                className={`h-8 w-8 shrink-0 rounded-full text-sm ${
                   n === page
                     ? "bg-emerald-600 text-white"
                     : isDark
@@ -205,11 +205,10 @@ export default function OpportunitiesList() {
             );
           })}
         </div>
-
         <button
           onClick={() => goToPage(page + 1)}
           disabled={page === totalPages}
-          className={`rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
+          className={`shrink-0 rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
             isDark
               ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
               : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"

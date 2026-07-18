@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { AddOppSchema } from "@/app/validation/AddOppSchema";
 import { useOpportunityContext } from "@/context/OpportunityContext";
+import { useTheme } from "@/context/ThemeContext";
 import type {
   Opportunity,
   OpportunityCategory,
@@ -32,6 +33,7 @@ export default function EditOpportunityPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const { opportunities, updateOpportunity } = useOpportunityContext();
+  const { isDark } = useTheme();
   const [submitMessage, setSubmitMessage] = useState("");
 
   const opportunity = useMemo(() => {
@@ -107,12 +109,26 @@ export default function EditOpportunityPage() {
 
   if (!opportunity) {
     return (
-      <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm">
-          <h1 className="text-2xl font-semibold text-slate-900">
+      <main
+        className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200 ${
+          isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
+        }`}
+      >
+        <div
+          className={`mx-auto max-w-3xl rounded-3xl border p-8 text-center shadow-sm ${
+            isDark
+              ? "border-slate-800 bg-slate-900"
+              : "border-slate-200 bg-white"
+          }`}
+        >
+          <h1
+            className={`text-2xl font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
+          >
             Opportunity not found
           </h1>
-          <p className="mt-3 text-sm text-slate-600">
+          <p
+            className={`mt-3 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}
+          >
             The opportunity you are trying to edit no longer exists.
           </p>
           <Link
@@ -127,17 +143,31 @@ export default function EditOpportunityPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+    <main
+      className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200 ${
+        isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
+      }`}
+    >
+      <div
+        className={`mx-auto max-w-5xl rounded-3xl border p-6 shadow-sm sm:p-8 lg:p-10 ${
+          isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"
+        }`}
+      >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">
               Edit opportunity
             </p>
-            <h1 className="mt-2 text-3xl font-bold text-slate-900">
+            <h1
+              className={`mt-2 text-3xl font-bold ${isDark ? "text-slate-50" : "text-slate-900"}`}
+            >
               Update this opportunity
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+            <p
+              className={`mt-3 max-w-2xl text-sm leading-7 ${
+                isDark ? "text-slate-300" : "text-slate-600"
+              }`}
+            >
               Adjust the details below and keep the listing aligned with the
               rest of the catalog.
             </p>
@@ -160,7 +190,7 @@ export default function EditOpportunityPage() {
           <section className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="title"
               >
                 Position title
@@ -168,7 +198,11 @@ export default function EditOpportunityPage() {
               <input
                 id="title"
                 {...register("title")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.title ? (
                 <p className="text-sm text-rose-600">{errors.title.message}</p>
@@ -177,7 +211,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="organization"
               >
                 Organization
@@ -185,7 +219,11 @@ export default function EditOpportunityPage() {
               <input
                 id="organization"
                 {...register("organization")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.organization ? (
                 <p className="text-sm text-rose-600">
@@ -196,7 +234,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="category"
               >
                 Category
@@ -204,7 +242,11 @@ export default function EditOpportunityPage() {
               <select
                 id="category"
                 {...register("category")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               >
                 <option value="Job">Job</option>
                 <option value="Scholarship">Scholarship</option>
@@ -217,7 +259,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="type"
               >
                 Opportunity type
@@ -225,7 +267,11 @@ export default function EditOpportunityPage() {
               <input
                 id="type"
                 {...register("type")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.type ? (
                 <p className="text-sm text-rose-600">{errors.type.message}</p>
@@ -234,7 +280,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="location"
               >
                 Location
@@ -242,7 +288,11 @@ export default function EditOpportunityPage() {
               <input
                 id="location"
                 {...register("location")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.location ? (
                 <p className="text-sm text-rose-600">
@@ -253,7 +303,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="deadline"
               >
                 Deadline
@@ -262,7 +312,11 @@ export default function EditOpportunityPage() {
                 id="deadline"
                 type="date"
                 {...register("deadline")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.deadline ? (
                 <p className="text-sm text-rose-600">
@@ -273,7 +327,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="workMode"
               >
                 Work mode
@@ -281,7 +335,11 @@ export default function EditOpportunityPage() {
               <select
                 id="workMode"
                 {...register("workMode")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               >
                 <option value="Remote">Remote</option>
                 <option value="On-site">On-site</option>
@@ -291,7 +349,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="applyLink"
               >
                 Apply link
@@ -299,7 +357,11 @@ export default function EditOpportunityPage() {
               <input
                 id="applyLink"
                 {...register("applyLink")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.applyLink ? (
                 <p className="text-sm text-rose-600">
@@ -311,7 +373,7 @@ export default function EditOpportunityPage() {
 
           <div className="space-y-2">
             <label
-              className="text-sm font-medium text-slate-700"
+              className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
               htmlFor="description"
             >
               Description
@@ -320,7 +382,11 @@ export default function EditOpportunityPage() {
               id="description"
               rows={6}
               {...register("description")}
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+              className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                isDark
+                  ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                  : "border-slate-200 bg-white text-slate-900"
+              }`}
             />
             {errors.description ? (
               <p className="text-sm text-rose-600">
@@ -332,7 +398,7 @@ export default function EditOpportunityPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="requirements"
               >
                 Requirements (comma separated)
@@ -341,7 +407,11 @@ export default function EditOpportunityPage() {
                 id="requirements"
                 rows={4}
                 {...register("requirements")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.requirements ? (
                 <p className="text-sm text-rose-600">
@@ -352,7 +422,7 @@ export default function EditOpportunityPage() {
 
             <div className="space-y-2">
               <label
-                className="text-sm font-medium text-slate-700"
+                className={`text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-700"}`}
                 htmlFor="tags"
               >
                 Tags (comma separated)
@@ -361,7 +431,11 @@ export default function EditOpportunityPage() {
                 id="tags"
                 rows={4}
                 {...register("tags")}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-500"
+                className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-emerald-500 ${
+                  isDark
+                    ? "border-slate-700 bg-slate-800 text-slate-100 placeholder-slate-500"
+                    : "border-slate-200 bg-white text-slate-900"
+                }`}
               />
               {errors.tags ? (
                 <p className="text-sm text-rose-600">{errors.tags.message}</p>
@@ -369,12 +443,26 @@ export default function EditOpportunityPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <label className="flex items-center gap-3 text-sm font-medium text-slate-700">
+          <div
+            className={`flex flex-wrap items-center justify-between gap-4 rounded-2xl border p-4 ${
+              isDark
+                ? "border-slate-700 bg-slate-900/70"
+                : "border-slate-200 bg-slate-50"
+            }`}
+          >
+            <label
+              className={`flex items-center gap-3 text-sm font-medium ${
+                isDark ? "text-slate-300" : "text-slate-700"
+              }`}
+            >
               <input
                 type="checkbox"
                 {...register("featured")}
-                className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                className={`h-4 w-4 rounded focus:ring-emerald-500 ${
+                  isDark
+                    ? "border-slate-600 bg-slate-800 text-emerald-400"
+                    : "border-slate-300 text-emerald-600"
+                }`}
               />
               Mark as featured opportunity
             </label>
@@ -382,7 +470,11 @@ export default function EditOpportunityPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-70"
+              className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold shadow-sm transition disabled:cursor-not-allowed disabled:opacity-70 ${
+                isDark
+                  ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                  : "bg-emerald-600 text-white hover:bg-emerald-700"
+              }`}
             >
               {isSubmitting ? "Saving..." : "Save changes"}
             </button>
