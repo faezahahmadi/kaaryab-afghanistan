@@ -55,31 +55,67 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="rounded-[28px] bg-slate-900 p-8 text-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.55)]">
+            <div
+              className={`rounded-[28px] p-8 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)] ${
+                isDark ? "bg-slate-900 text-white" : "bg-white text-slate-900"
+              }`}
+            >
               <div className="space-y-5">
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 p-4">
-                  <Mail className="mt-0.5 h-5 w-5 text-emerald-400" />
+                <div
+                  className={`flex items-start gap-3 rounded-2xl border p-4 ${
+                    isDark
+                      ? "border-white/10 bg-white/10"
+                      : "border-slate-200 bg-slate-50"
+                  }`}
+                >
+                  <Mail className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Email</p>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <p
+                      className={`mt-1 text-sm ${
+                        isDark ? "text-slate-300" : "text-slate-600"
+                      }`}
+                    >
                       hello@karyabafghanistan.org
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 p-4">
-                  <Phone className="mt-0.5 h-5 w-5 text-emerald-400" />
+
+                <div
+                  className={`flex items-start gap-3 rounded-2xl border p-4 ${
+                    isDark
+                      ? "border-white/10 bg-white/10"
+                      : "border-slate-200 bg-slate-50"
+                  }`}
+                >
+                  <Phone className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Phone</p>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <p
+                      className={`mt-1 text-sm ${
+                        isDark ? "text-slate-300" : "text-slate-600"
+                      }`}
+                    >
                       +93 70 123 4567
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 p-4">
-                  <MapPin className="mt-0.5 h-5 w-5 text-emerald-400" />
+
+                <div
+                  className={`flex items-start gap-3 rounded-2xl border p-4 ${
+                    isDark
+                      ? "border-white/10 bg-white/10"
+                      : "border-slate-200 bg-slate-50"
+                  }`}
+                >
+                  <MapPin className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Location</p>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <p
+                      className={`mt-1 text-sm ${
+                        isDark ? "text-slate-300" : "text-slate-600"
+                      }`}
+                    >
                       Kabul, Afghanistan
                     </p>
                   </div>
