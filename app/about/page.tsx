@@ -2,7 +2,7 @@
 
 import { coreValues } from "@/utils/Constants";
 import Image from "next/image";
-import CoreValueCard from "./CoreValueCard";
+import CoreValueCard from "../../components/about/CoreValueCard";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function About() {
