@@ -5,12 +5,14 @@ import { useSearchParams } from "next/navigation";
 import OpportunityCard from "./OpportunityCard";
 import type { Opportunity } from "@/utils/mockData";
 import { useOpportunityContext } from "@/context/OpportunityContext";
+import { useTheme } from "@/context/ThemeContext";
 
 const PAGE_SIZE = 9;
 
 export default function OpportunitiesList() {
   const searchParams = useSearchParams();
   const { opportunities } = useOpportunityContext();
+  const { isDark } = useTheme();
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("All Locations");
   const [deadlineFilter, setDeadlineFilter] = useState("All");
@@ -86,6 +88,7 @@ export default function OpportunitiesList() {
 
   return (
     <div>
+      {/* Filters */}
       <div className="mb-6 grid gap-3 md:grid-cols-3">
         <input
           value={query}
@@ -94,7 +97,11 @@ export default function OpportunitiesList() {
             setPage(1);
           }}
           placeholder="Search by title..."
-          className="col-span-1 rounded-lg border border-slate-200 px-4 py-2 shadow-sm"
+          className={`col-span-1 rounded-lg px-4 py-2 shadow-sm border ${
+            isDark
+              ? "border-slate-700 bg-slate-900 text-slate-200 placeholder-slate-500"
+              : "border-slate-200 bg-white text-slate-900 placeholder-slate-400"
+          }`}
         />
 
         <select
@@ -103,7 +110,11 @@ export default function OpportunitiesList() {
             setLocation(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg border border-slate-200 px-4 py-2 shadow-sm"
+          className={`rounded-lg px-4 py-2 shadow-sm border ${
+            isDark
+              ? "border-slate-700 bg-slate-900 text-slate-200"
+              : "border-slate-200 bg-white text-slate-900"
+          }`}
         >
           {locations.map((loc) => (
             <option key={loc} value={loc}>
@@ -118,7 +129,11 @@ export default function OpportunitiesList() {
             setDeadlineFilter(e.target.value);
             setPage(1);
           }}
-          className="rounded-lg border border-slate-200 px-4 py-2 shadow-sm"
+          className={`rounded-lg px-4 py-2 shadow-sm border ${
+            isDark
+              ? "border-slate-700 bg-slate-900 text-slate-200"
+              : "border-slate-200 bg-white text-slate-900"
+          }`}
         >
           <option value="All">All deadlines</option>
           <option value="Next7">Next 7 days</option>
@@ -127,6 +142,7 @@ export default function OpportunitiesList() {
         </select>
       </div>
 
+      {/* Category buttons */}
       <div className="mb-4 flex flex-wrap gap-2">
         {categories.map((cat) => (
           <button
@@ -138,7 +154,9 @@ export default function OpportunitiesList() {
             className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium transition ${
               (category === null && cat === "All") || category === cat
                 ? "bg-emerald-600 text-white"
-                : "bg-slate-100 text-slate-700"
+                : isDark
+                  ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
             }`}
           >
             {cat}
@@ -146,17 +164,23 @@ export default function OpportunitiesList() {
         ))}
       </div>
 
+      {/* Opportunity cards */}
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {currentPageData.map((o) => (
           <OpportunityCard key={o.id} opportunity={o} />
         ))}
       </div>
 
+      {/* Pagination */}
       <div className="mt-8 flex items-center justify-center gap-3">
         <button
           onClick={() => goToPage(page - 1)}
           disabled={page === 1}
-          className="rounded-lg border border-slate-200 px-3 py-1 text-sm disabled:opacity-50"
+          className={`rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
+            isDark
+              ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
+              : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+          }`}
         >
           Prev
         </button>
@@ -171,7 +195,9 @@ export default function OpportunitiesList() {
                 className={`h-8 w-8 rounded-full text-sm ${
                   n === page
                     ? "bg-emerald-600 text-white"
-                    : "bg-slate-100 text-slate-700"
+                    : isDark
+                      ? "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
                 {n}
@@ -183,7 +209,11 @@ export default function OpportunitiesList() {
         <button
           onClick={() => goToPage(page + 1)}
           disabled={page === totalPages}
-          className="rounded-lg border border-slate-200 px-3 py-1 text-sm disabled:opacity-50"
+          className={`rounded-lg px-3 py-1 text-sm border disabled:opacity-50 ${
+            isDark
+              ? "border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
+              : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+          }`}
         >
           Next
         </button>
