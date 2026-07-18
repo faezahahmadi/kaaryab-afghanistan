@@ -372,15 +372,25 @@ export default function AddOpportunity() {
           </div>
 
           <div
-            className="flex flex-wrap items-center justify-between gap-4 
-              rounded-2xl border border-slate-200 bg-slate-50 p-4"
+            className={`flex flex-wrap items-center justify-between gap-4 rounded-2xl border p-4 ${
+              isDark
+                ? "border-slate-700 bg-slate-900/70"
+                : "border-slate-200 bg-slate-50"
+            }`}
           >
-            <label className="flex items-center gap-3 text-sm font-medium text-slate-700">
+            <label
+              className={`flex items-center gap-3 text-sm font-medium ${
+                isDark ? "text-slate-300" : "text-slate-700"
+              }`}
+            >
               <input
                 type="checkbox"
                 {...register("featured")}
-                className="h-4 w-4 rounded border-slate-300 text-emerald-600
-                 focus:ring-emerald-500"
+                className={`h-4 w-4 rounded focus:ring-emerald-500 ${
+                  isDark
+                    ? "border-slate-600 bg-slate-800 text-emerald-400"
+                    : "border-slate-300 text-emerald-600"
+                }`}
               />
               Mark as featured opportunity
             </label>
@@ -388,10 +398,11 @@ export default function AddOpportunity() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center justify-center rounded-full
-               bg-emerald-600 px-6 py-3 text-sm font-semibold text-white 
-               shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed 
-               disabled:opacity-70"
+              className={`inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold shadow-sm transition disabled:cursor-not-allowed disabled:opacity-70 ${
+                isDark
+                  ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                  : "bg-emerald-600 text-white hover:bg-emerald-700"
+              }`}
             >
               {isSubmitting ? "Publishing..." : "Publish opportunity"}
             </button>
