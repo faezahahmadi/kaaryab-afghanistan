@@ -1,8 +1,8 @@
 "use client";
-
 import OpportunitiesList from "@/components/opportunitiesPage/OpportunitiesList";
 import { useTheme } from "@/context/ThemeContext";
-
+import { div } from "framer-motion/client";
+import { Suspense } from "react";
 export default function Opportunities() {
   const { isDark } = useTheme();
 
@@ -24,8 +24,13 @@ export default function Opportunities() {
             one.
           </p>
         </div>
-
-        <OpportunitiesList />
+        <Suspense
+          fallback={
+            <div className="text-center py-10">Loading Opportunities</div>
+          }
+        >
+          <OpportunitiesList />
+        </Suspense>
       </div>
     </main>
   );

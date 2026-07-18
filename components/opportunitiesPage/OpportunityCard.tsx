@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useOpportunityContext } from "@/context/OpportunityContext";
 import { useTheme } from "@/context/ThemeContext";
 import type { Opportunity } from "@/utils/mockData";
+import { useEffect, useState } from "react";
 
 type OpportunityCardProps = {
   opportunity: Opportunity;
@@ -15,14 +16,18 @@ export default function OpportunityCard({ opportunity }: OpportunityCardProps) {
   const router = useRouter();
   const { isSaved, toggleSavedOpportunity } = useOpportunityContext();
   const { isDark } = useTheme();
-  const saved = isSaved(opportunity.id);
+
+  // Always start with false so server and client match
+  const [saved, setSaved] = useState(false);
+
+  // Update after hydration
+  useEffect(() => {
+    setSaved(isSaved(opportunity.id));
+  }, [isSaved, opportunity.id]);
 
   const handleSaveToggle = () => {
     toggleSavedOpportunity(opportunity);
-
-    if (!saved) {
-      router.push("/saved");
-    }
+    if (!saved) router.push("/saved");
   };
 
   return (
