@@ -4,12 +4,28 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { useOpportunityContext } from "@/context/OpportunityContext";
+import { useTheme } from "@/context/ThemeContext";
 
 function DetailRow({ label, value }: { label: string; value: string }) {
+  const { isDark } = useTheme();
   return (
-    <div className="rounded-lg bg-slate-50 p-4">
-      <p className="text-sm font-medium text-slate-500">{label}</p>
-      <p className="mt-1 text-sm text-slate-800">{value}</p>
+    <div
+      className={`rounded-lg p-4 ${isDark ? "bg-slate-900/70" : "bg-slate-50"}`}
+    >
+      <p
+        className={`text-sm font-medium ${
+          isDark ? "text-slate-400" : "text-slate-500"
+        }`}
+      >
+        {label}
+      </p>
+      <p
+        className={`mt-1 text-sm ${
+          isDark ? "text-slate-200" : "text-slate-800"
+        }`}
+      >
+        {value}
+      </p>
     </div>
   );
 }
@@ -17,10 +33,9 @@ function DetailRow({ label, value }: { label: string; value: string }) {
 export default function OpportunityDetailPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
-  const { opportunities } = useOpportunityContext();
-
-  const { deleteOpportunity, toggleSavedOpportunity, isSaved } =
+  const { opportunities, deleteOpportunity, toggleSavedOpportunity, isSaved } =
     useOpportunityContext();
+  const { isDark } = useTheme();
   const [feedback, setFeedback] = useState("");
 
   const opportunity = useMemo(() => {
@@ -45,17 +60,33 @@ export default function OpportunityDetailPage() {
 
   if (!opportunity) {
     return (
-      <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:py-16">
-        <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-          <h1 className="text-2xl font-semibold text-slate-900">
-            Opportunity not found
-          </h1>
-          <p className="mt-3 text-sm text-slate-600">
+      <main
+        className={`min-h-screen px-4 py-12 sm:px-6 lg:py-16 ${
+          isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
+        }`}
+      >
+        <div
+          className={`mx-auto max-w-4xl rounded-2xl border p-6 text-center shadow-sm ${
+            isDark
+              ? "border-slate-700 bg-slate-900/70"
+              : "border-slate-200 bg-white"
+          }`}
+        >
+          <h1 className="text-2xl font-semibold">Opportunity not found</h1>
+          <p
+            className={`mt-3 text-sm ${
+              isDark ? "text-slate-400" : "text-slate-600"
+            }`}
+          >
             The selected opportunity could not be located.
           </p>
           <Link
             href="/opportunities"
-            className="mt-6 inline-flex rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+            className={`mt-6 inline-flex rounded-lg px-4 py-2 text-sm font-medium transition ${
+              isDark
+                ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                : "bg-emerald-600 text-white hover:bg-emerald-700"
+            }`}
           >
             View all opportunities
           </Link>
@@ -65,8 +96,18 @@ export default function OpportunityDetailPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-12 sm:px-6 lg:py-16">
-      <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+    <main
+      className={`min-h-screen px-4 py-12 sm:px-6 lg:py-16 ${
+        isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
+      }`}
+    >
+      <div
+        className={`mx-auto max-w-4xl rounded-2xl border p-6 sm:p-8 shadow-sm ${
+          isDark
+            ? "border-slate-700 bg-slate-900/70"
+            : "border-slate-200 bg-white"
+        }`}
+      >
         <Link
           href="/opportunities"
           className="text-sm font-medium text-emerald-600 hover:underline"
@@ -78,17 +119,23 @@ export default function OpportunityDetailPage() {
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-600">
             {opportunity.category}
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            {opportunity.title}
-          </h1>
-          <p className="mt-3 text-lg text-slate-700">
+          <h1 className="mt-2 text-3xl font-bold">{opportunity.title}</h1>
+          <p
+            className={`mt-3 text-lg ${
+              isDark ? "text-slate-300" : "text-slate-700"
+            }`}
+          >
             Organization: {opportunity.organization}
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={handleSaveToggle}
-              className="rounded-full bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700"
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                isDark
+                  ? "bg-emerald-600 text-white hover:bg-emerald-500"
+                  : "bg-emerald-600 text-white hover:bg-emerald-700"
+              }`}
             >
               {saved ? "Remove Save" : "Save Opportunity"}
             </button>
@@ -98,7 +145,11 @@ export default function OpportunityDetailPage() {
               onClick={() =>
                 router.push(`/opportunities/${opportunity.id}/edit`)
               }
-              className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                isDark
+                  ? "border-slate-600 bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+              }`}
             >
               Edit
             </button>
@@ -106,7 +157,11 @@ export default function OpportunityDetailPage() {
             <button
               type="button"
               onClick={handleDelete}
-              className="rounded-full border border-rose-200 bg-white px-4 py-2 text-sm font-medium text-rose-600 transition hover:bg-rose-50"
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                isDark
+                  ? "border-rose-500 bg-slate-800 text-rose-400 hover:bg-slate-700"
+                  : "border-rose-200 bg-white text-rose-600 hover:bg-rose-50"
+              }`}
             >
               Delete
             </button>
@@ -128,32 +183,60 @@ export default function OpportunityDetailPage() {
           />
         </div>
 
-        <div className="mt-8 rounded-xl border border-slate-200 p-6">
-          <h2 className="text-xl font-semibold text-slate-900">Description</h2>
-          <p className="mt-3 text-sm leading-7 text-slate-700">
+        <div
+          className={`mt-8 rounded-xl border p-6 ${
+            isDark
+              ? "border-slate-700 bg-slate-900/70"
+              : "border-slate-200 bg-white"
+          }`}
+        >
+          <h2 className="text-xl font-semibold">Description</h2>
+          <p
+            className={`mt-3 text-sm leading-7 ${
+              isDark ? "text-slate-300" : "text-slate-700"
+            }`}
+          >
             {opportunity.description}
           </p>
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 p-6">
-            <h2 className="text-xl font-semibold text-slate-900">
-              Requirements
-            </h2>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700">
+          <div
+            className={`rounded-xl border p-6 ${
+              isDark
+                ? "border-slate-700 bg-slate-900/70"
+                : "border-slate-200 bg-white"
+            }`}
+          >
+            <h2 className="text-xl font-semibold">Requirements</h2>
+            <ul
+              className={`mt-4 list-disc space-y-2 pl-5 text-sm ${
+                isDark ? "text-slate-300" : "text-slate-700"
+              }`}
+            >
               {opportunity.requirements.map((requirement: string) => (
                 <li key={requirement}>{requirement}</li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-xl border border-slate-200 p-6">
-            <h2 className="text-xl font-semibold text-slate-900">Tags</h2>
+          <div
+            className={`rounded-xl border p-6 ${
+              isDark
+                ? "border-slate-700 bg-slate-900/70"
+                : "border-slate-200 bg-white"
+            }`}
+          >
+            <h2 className="text-xl font-semibold">Tags</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {opportunity.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-emerald-50 px-3 py-1 text-sm text-emerald-700"
+                  className={`rounded-full px-3 py-1 text-sm ${
+                    isDark
+                      ? "bg-emerald-900 text-emerald-300"
+                      : "bg-emerald-50 text-emerald-700"
+                  }`}
                 >
                   {tag}
                 </span>
