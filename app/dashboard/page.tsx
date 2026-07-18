@@ -210,7 +210,7 @@ export default function Dashboard() {
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-2xl">{card.icon()}</span>
+                <span className="text-2xl text-emerald-800">{card.icon()}</span>
                 <div
                   className={`h-2 w-16 rounded-full bg-linear-to-r ${card.accent}`}
                 />
@@ -294,6 +294,8 @@ export default function Dashboard() {
                     wrapperStyle={{
                       color: isDark ? "#94a3b8" : "#475569",
                       fontSize: "12px",
+                      verticalAlign: "bottom",
+                      paddingTop: "25px",
                     }}
                   />
                 </PieChart>
