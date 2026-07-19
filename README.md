@@ -1,7 +1,8 @@
 # KaarYab Afghanistan
 
-**An opportunity finder platform helping Afghan youth discover jobs, internships, scholarships, online courses, training programs, and volunteer work — all in one place.
-Note: All data is Mock data, so they are only for learning purpose.**
+**An opportunity finder platform helping Afghan youth discover jobs, internships, scholarships, online courses, training programs, and volunteer work — all in one place.**
+
+**Note: All data is Mock data, so they are only for learning purpose.**
 ---
 
 ## 📖 Project Description
