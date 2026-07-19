@@ -21,8 +21,9 @@ export default function Home() {
               Find the right opportunity
             </p>
             <h1
-              className="font-bold font-sans leading-tight text-4xl sm:text-5xl md:text-[54px]"
-              style={{ textShadow: "0px 4px 10px rgb(156, 155, 155)" }}
+              className="font-bold font-sans leading-tight text-4xl sm:text-5xl md:text-[54px]
+               [text-shadow:0px_4px_10px_rgb(156,155,155)]
+               dark:[text-shadow:0px_0px_3px_#0000]"
             >
               Discover opportunities to{" "}
               <span className="text-primary-600">grow</span>,
@@ -41,9 +42,15 @@ export default function Home() {
               >
                 Explore Opportunities
               </Link>
-              <button className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 text-base font-semibold text-slate-900 shadow-button transition hover:bg-slate-100 dark:bg-emerald-400 dark:text-white dark:hover:bg-emerald-300">
+              <Link
+                href="/about"
+                className="inline-flex h-12 items-center justify-center rounded-full
+                 bg-white border border-emerald-600 px-8 text-base font-semibold
+                  text-slate-900 shadow-button transition hover:bg-emerald-200
+                   dark:bg-emerald-400 dark:text-white dark:hover:bg-emeral-300"
+              >
                 Learn More
-              </button>{" "}
+              </Link>
             </div>
           </div>
 

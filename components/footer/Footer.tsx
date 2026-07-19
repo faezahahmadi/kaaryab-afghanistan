@@ -51,12 +51,13 @@ const Footer: React.FC<FooterProps> = () => {
             </h4>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map((category) => (
-                <span
+                <Link
                   key={category.label}
-                  className="cursor-default rounded-md border border-secondary-300 px-4 py-2 text-sm text-white/90 transition-colors duration-200 hover:bg-secondary-300 hover:text-white dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-emerald-400"
+                  href={`/opportunities?category=${encodeURIComponent(category.label)}`}
+                  className="rounded-md border border-secondary-300 px-4 py-2 text-sm text-white/90 transition-colors duration-200 hover:bg-secondary-300 hover:text-white dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-emerald-400"
                 >
                   {category.label}
-                </span>
+                </Link>
               ))}
             </div>
           </div>
