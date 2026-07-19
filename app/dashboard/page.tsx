@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import allOpportunities from "@/utils/mockData";
+import { useOpportunityContext } from "@/context/OpportunityContext";
 import type { Opportunity } from "@/utils/mockData";
 import {
   Bar,
@@ -53,7 +54,7 @@ const CHART_COLORS = [
 
 export default function Dashboard() {
   const { isDark } = useTheme();
-
+  const { opportunities: allOpportunities } = useOpportunityContext();
   // Compute real-time stats from the data
   const stats = (() => {
     const total = allOpportunities.length;
