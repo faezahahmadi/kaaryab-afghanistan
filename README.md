@@ -165,7 +165,6 @@ utils/
    npm start
    ```
 
-## 📸 Screenshots
 
 ## 🔗 Live Demo
 
@@ -182,4 +181,31 @@ https://github.com/faezahahmadi/kaaryab-afghanistan.git
 
 ## 👤 Author
 
-Built by **Faezah** as a final capstone project — Next.js, TypeScript, and Tailwind CSS.
+Built by **Faezah Ahmadi** as a final capstone project — Next.js, TypeScript, and Tailwind CSS.
+
+## 📸 Screenshots
+<img width="1365" height="730" alt="1" src="https://github.com/user-attachments/assets/58eacad1-c0e5-4aae-b6f7-f6b10c729fd3" />
+<img width="1366" height="730" alt="2" src="https://github.com/user-attachments/assets/255a0d0b-b657-4d9e-9f69-dfabbaa59093" />
+<img width="1362" height="730" alt="3" src="https://github.com/user-attachments/assets/23756e6d-d02d-47d5-bb4b-01975884f9c5" />
+<img width="1361" height="632" alt="24" src="https://github.com/user-attachments/assets/4efb913c-57c2-414e-8e2a-50dd3786cb23" />
+<img width="1366" height="727" alt="23" src="https://github.com/user-attachments/assets/6e9c3ba1-de98-462e-9e42-b4cfe919809c" />
+<img width="1366" height="727" alt="22" src="https://github.com/user-attachments/assets/ba65fcd6-96e2-4a3c-8560-60a289461c36" />
+<img width="1366" height="722" alt="21" src="https://github.com/user-attachments/assets/33ec1342-1c0e-44d6-890a-ff714b02c628" />
+<img width="1354" height="626" alt="20" src="https://github.com/user-attachments/assets/a2f09645-0a35-4291-b2e7-dad02f435348" />
+<img width="1366" height="719" alt="19" src="https://github.com/user-attachments/assets/dae7af6e-e8ad-450d-94b3-195b752d2228" />
+<img width="1366" height="728" alt="18" src="https://github.com/user-attachments/assets/6f6e86e0-1b79-422b-b156-77821f24711a" />
+<img width="1366" height="668" alt="17" src="https://github.com/user-attachments/assets/b11b1967-88b2-41a5-9916-92cd878d2efb" />
+<img width="1366" height="686" alt="16" src="https://github.com/user-attachments/assets/0b0849da-ef76-436d-a133-71ded61abf3e" />
+<img width="1366" height="673" alt="15" src="https://github.com/user-attachments/assets/52d30832-980d-4ef4-a4d4-7edc98c25216" />
+<img width="1276" height="718" alt="14" src="https://github.com/user-attachments/assets/a1c86f2f-20a7-4724-aed6-028117175145" />
+<img width="844" height="684" alt="13" src="https://github.com/user-attachments/assets/db430b9c-bf29-49c5-bba6-a326aed70ad1" />
+<img width="1351" height="706" alt="12" src="https://github.com/user-attachments/assets/e78f8ec5-27a9-4641-b5da-beb1b43374a9" />
+<img width="1366" height="729" alt="11" src="https://github.com/user-attachments/assets/0ca62170-6f81-4076-83cd-7e1becbd2f1f" />
+<img width="1366" height="728" alt="10" src="https://github.com/user-attachments/assets/3fe5ec67-49f6-4abb-90bd-d0bb15deec77" />
+<img width="1366" height="721" alt="9" src="https://github.com/user-attachments/assets/a4029081-de11-4dc4-9dc9-e7c32ee991e5" />
+<img width="1366" height="729" alt="8" src="https://github.com/user-attachments/assets/e243ab3b-c8e0-4535-bda9-5bf1df11aad0" />
+<img width="1360" height="635" alt="7" src="https://github.com/user-attachments/assets/2b862d44-4dae-4ec1-8590-cca44c46aec0" />
+<img width="1366" height="707" alt="6" src="https://github.com/user-attachments/assets/6a8e1b28-983f-41c5-b5ff-9ea7f5d62fa5" />
+<img width="1366" height="728" alt="5" src="https://github.com/user-attachments/assets/b33a049b-10e9-41ec-a216-844822eeb177" />
+<img width="1366" height="703" alt="4" src="https://github.com/user-attachments/assets/6c8993a4-89d2-4079-9444-9ef9b552879f" />
+
