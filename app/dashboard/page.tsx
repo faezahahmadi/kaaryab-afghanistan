@@ -1,17 +1,12 @@
 "use client";
 import { Pin } from "lucide-react";
-import {
-  Briefcase,
-  GraduationCap,
-  RefreshCw,
-  BookOpen,
-  TrendingUp,
-  Handshake,
-} from "lucide-react";
+import { Briefcase } from "lucide-react";
+import { CATEGORY_COLORS } from "@/utils/Constants";
+import { CATEGORY_ICONS } from "@/utils/Constants";
+import { CHART_COLORS } from "@/utils/Constants";
 import { useTheme } from "@/context/ThemeContext";
 import allOpportunities from "@/utils/mockData";
 import { useOpportunityContext } from "@/context/OpportunityContext";
-import type { Opportunity } from "@/utils/mockData";
 import {
   Bar,
   BarChart,
@@ -26,31 +21,7 @@ import {
   YAxis,
 } from "recharts";
 import Link from "next/link";
-
-const CATEGORY_COLORS: Record<string, string> = {
-  Job: "#10b981",
-  Scholarship: "#3b82f6",
-  Internship: "#8b5cf6",
-  "Online Course": "#f59e0b",
-  "Training Program": "#ec4899",
-  "Volunteer Work": "#14b8a6",
-};
-const CATEGORY_ICONS: Record<string, React.ElementType> = {
-  Job: Briefcase,
-  Scholarship: GraduationCap,
-  Internship: RefreshCw,
-  "Online Course": BookOpen,
-  "Training Program": TrendingUp,
-  "Volunteer Work": Handshake,
-};
-const CHART_COLORS = [
-  "#10b981",
-  "#3b82f6",
-  "#8b5cf6",
-  "#f59e0b",
-  "#ec4899",
-  "#14b8a6",
-];
+import Header from "@/components/dashboard/Header";
 
 export default function Dashboard() {
   const { isDark } = useTheme();
@@ -161,43 +132,7 @@ export default function Dashboard() {
     >
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header */}
-        <header
-          className={`rounded-[28px] border p-6 shadow-sm ${
-            isDark
-              ? "border-slate-800 bg-slate-900/80"
-              : "border-slate-200 bg-white"
-          }`}
-        >
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
-                Analytics overview
-              </p>
-              <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">
-                Opportunity Dashboard
-              </h1>
-              <p
-                className={`mt-3 max-w-2xl text-sm sm:text-base ${
-                  isDark ? "text-slate-300" : "text-slate-600"
-                }`}
-              >
-                Track your opportunity catalog, monitor deadlines, and gain
-                insights from real-time data.
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span
-                className={`rounded-full px-4 py-2 text-sm font-medium ${
-                  isDark
-                    ? "bg-emerald-500/20 text-emerald-300"
-                    : "bg-emerald-100 text-emerald-700"
-                }`}
-              >
-                {stats.total} total
-              </span>
-            </div>
-          </div>
-        </header>
+        <Header statsTotal={stats.total} />
 
         {/* Summary Cards */}
         <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

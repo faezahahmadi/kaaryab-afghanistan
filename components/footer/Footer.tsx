@@ -7,7 +7,10 @@ import SocialIcons from "./SocialIcons";
 
 const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer className="bg-primary-900 pt-16 pb-6 text-white dark:bg-slate-950 dark:text-slate-50">
+    <footer
+      className="bg-primary-900 pt-16 pb-6 text-white dark:bg-slate-950
+     dark:text-slate-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="flex flex-col gap-6">
@@ -36,7 +39,8 @@ const Footer: React.FC<FooterProps> = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-base text-white/80 transition-colors hover:text-secondary-300 dark:text-slate-400 dark:hover:text-emerald-400"
+                    className="text-base text-white/80 transition-colors hover:text-secondary-300
+                     dark:text-slate-400 dark:hover:text-emerald-400"
                   >
                     {link.label}
                   </Link>
@@ -54,7 +58,10 @@ const Footer: React.FC<FooterProps> = () => {
                 <Link
                   key={category.label}
                   href={`/opportunities?category=${encodeURIComponent(category.label)}`}
-                  className="rounded-md border border-secondary-300 px-4 py-2 text-sm text-white/90 transition-colors duration-200 hover:bg-secondary-300 hover:text-white dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-emerald-400"
+                  className="rounded-md border border-secondary-300 px-4 py-2 text-sm
+                   text-white/90 transition-colors duration-200 hover:bg-secondary-300
+                    hover:text-white dark:border-slate-700 dark:text-slate-300
+                     dark:hover:bg-slate-700 dark:hover:text-emerald-400"
                 >
                   {category.label}
                 </Link>
@@ -69,7 +76,8 @@ const Footer: React.FC<FooterProps> = () => {
 
             <a
               href="mailto:karyaabafghanistan@gmail.com"
-              className="flex items-center gap-3 text-white/80 transition hover:text-secondary-300 dark:text-slate-400 dark:hover:text-emerald-400"
+              className="flex items-center gap-3 text-white/80 transition
+               hover:text-secondary-300 dark:text-slate-400 dark:hover:text-emerald-400"
             >
               <Mail size={18} className="text-secondary-300" />
               <span className="text-sm">karyaabafghanistan@gmail.com</span>
@@ -89,7 +97,10 @@ const Footer: React.FC<FooterProps> = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-center text-white/60 dark:border-slate-700 dark:text-slate-500">
+        <div
+          className="mt-12 border-t border-white/10 pt-6 text-center text-white/60
+             dark:border-slate-700 dark:text-slate-500"
+        >
           <p className="text-sm">
             © {new Date().getFullYear()} Karyaab Afghanistan. All rights
             reserved.

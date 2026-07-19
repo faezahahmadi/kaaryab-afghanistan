@@ -11,7 +11,8 @@ export default function SavedOpportunities() {
 
   return (
     <main
-      className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200 ${isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"}`}
+      className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200
+         ${isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"}`}
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -44,7 +45,8 @@ export default function SavedOpportunities() {
           </div>
         ) : (
           <div
-            className={`rounded-3xl border border-dashed p-10 text-center shadow-sm ${isDark ? "border-slate-700 bg-slate-900" : "border-slate-300 bg-white"}`}
+            className={`rounded-3xl border border-dashed p-10 text-center shadow-sm
+               ${isDark ? "border-slate-700 bg-slate-900" : "border-slate-300 bg-white"}`}
           >
             <h2
               className={`text-xl font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
@@ -57,7 +59,8 @@ export default function SavedOpportunities() {
             </p>
             <Link
               href="/opportunities"
-              className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+              className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-3 text-sm 
+              font-semibold text-white transition hover:bg-emerald-700"
             >
               Explore opportunities
             </Link>

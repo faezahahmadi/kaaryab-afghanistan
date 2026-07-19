@@ -9,14 +9,18 @@ export default function NotFound() {
 
   return (
     <main
-      className={`flex min-h-screen items-center justify-center px-4 py-12 transition-colors duration-200 sm:px-6 lg:px-8 ${
-        isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
-      }`}
+      className={`flex min-h-screen items-center justify-center px-4 py-12
+         transition-colors duration-200 sm:px-6 lg:px-8 ${
+           isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
+         }`}
     >
       <div
-        className={`mx-auto w-full max-w-lg rounded-3xl border p-8 text-center shadow-sm sm:p-10 ${
-          isDark ? "border-slate-800 bg-slate-900" : "border-slate-200 bg-white"
-        }`}
+        className={`mx-auto w-full max-w-lg rounded-3xl border p-8 text-center
+           shadow-sm sm:p-10 ${
+             isDark
+               ? "border-slate-800 bg-slate-900"
+               : "border-slate-200 bg-white"
+           }`}
       >
         <div
           className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${
@@ -50,17 +54,20 @@ export default function NotFound() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-emerald-600 px-6 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            className="inline-flex h-12 items-center justify-center rounded-full
+             bg-emerald-600 px-6 text-sm font-semibold text-white transition
+              hover:bg-emerald-700"
           >
             Back to home
           </Link>
           <Link
             href="/opportunities"
-            className={`inline-flex h-12 items-center justify-center rounded-full border px-6 text-sm font-semibold transition ${
-              isDark
-                ? "border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700"
-                : "border-slate-200 bg-white text-slate-900 hover:bg-slate-100"
-            }`}
+            className={`inline-flex h-12 items-center justify-center rounded-full border
+               px-6 text-sm font-semibold transition ${
+                 isDark
+                   ? "border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700"
+                   : "border-slate-200 bg-white text-slate-900 hover:bg-slate-100"
+               }`}
           >
             Browse opportunities
           </Link>

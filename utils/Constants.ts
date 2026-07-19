@@ -1,5 +1,13 @@
 import { Briefcase,  Building2, Users } from "lucide-react";
 import { NavLink, Categories} from "../types/layout.types";
+import {
+
+  GraduationCap,
+  RefreshCw,
+  BookOpen,
+  TrendingUp,
+  Handshake,
+} from "lucide-react";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
@@ -61,4 +69,29 @@ export const coreValues: CoreValueProps[] = [
     id: 3,
     featured: false,
   },
+];
+
+export const CATEGORY_COLORS: Record<string, string> = {
+  Job: "#10b981",
+  Scholarship: "#3b82f6",
+  Internship: "#8b5cf6",
+  "Online Course": "#f59e0b",
+  "Training Program": "#ec4899",
+  "Volunteer Work": "#14b8a6",
+};
+export const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  Job: Briefcase,
+  Scholarship: GraduationCap,
+  Internship: RefreshCw,
+  "Online Course": BookOpen,
+  "Training Program": TrendingUp,
+  "Volunteer Work": Handshake,
+};
+export const CHART_COLORS = [
+  "#10b981",
+  "#3b82f6",
+  "#8b5cf6",
+  "#f59e0b",
+  "#ec4899",
+  "#14b8a6",
 ];

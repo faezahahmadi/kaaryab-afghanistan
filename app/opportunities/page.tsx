@@ -3,7 +3,10 @@ import OpportunitiesList from "@/components/opportunitiesPage/OpportunitiesList"
 
 export default function Opportunities() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-16 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-50">
+    <main
+      className="min-h-screen bg-slate-50 px-6 py-16 text-slate-900 
+      transition-colors duration-200 dark:bg-slate-950 dark:text-slate-50"
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
           <h1 className="text-center text-4xl font-bold text-slate-900 dark:text-slate-50">

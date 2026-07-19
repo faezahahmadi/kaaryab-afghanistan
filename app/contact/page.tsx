@@ -3,8 +3,14 @@ import Form from "@/components/contact/Form";
 
 export default function Contact() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-50">
-      <section className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <main
+      className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200
+     dark:bg-slate-950 dark:text-slate-50"
+    >
+      <section
+        className="border-b border-slate-200 bg-white dark:border-slate-800
+       dark:bg-slate-900"
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
@@ -21,9 +27,15 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="rounded-[28px] p-8 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)] bg-white text-slate-900 dark:bg-slate-900 dark:text-white">
+            <div
+              className="rounded-[28px] p-8 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.25)]
+             bg-white text-slate-900 dark:bg-slate-900 dark:text-white"
+            >
               <div className="space-y-5">
-                <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10">
+                <div
+                  className="flex items-start gap-3 rounded-2xl border border-slate-200
+                 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10"
+                >
                   <Mail className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Email</p>
@@ -33,7 +45,10 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10">
+                <div
+                  className="flex items-start gap-3 rounded-2xl border border-slate-200
+                 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10"
+                >
                   <Phone className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Phone</p>
@@ -43,7 +58,10 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10">
+                <div
+                  className="flex items-start gap-3 rounded-2xl border border-slate-200
+                 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/10"
+                >
                   <MapPin className="mt-0.5 h-5 w-5 text-emerald-500" />
                   <div>
                     <p className="text-sm font-semibold">Location</p>
@@ -59,7 +77,10 @@ export default function Contact() {
       </section>
 
       <section className="px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-5xl rounded-4xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8 lg:p-10">
+        <div
+          className="mx-auto max-w-5xl rounded-4xl border border-slate-200
+         bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8 lg:p-10"
+        >
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
