@@ -3,8 +3,12 @@ import Link from "next/link";
 import HeroSection from "@/components/home/HeroSection";
 import StatisticSection from "@/components/home/StatisticSection";
 import FeaturedOppSection from "@/components/home/FeaturedOppSection";
+import { allOpportunities } from "@/utils/mockData";
 
 export default function Home() {
+  const featuredOpportunities = allOpportunities.filter(
+    (o) => o.featured === true,
+  );
   return (
     <main
       className="flex flex-col items-center justify-between bg-white
@@ -13,7 +17,7 @@ export default function Home() {
       <HeroSection />
       <StatisticSection />
       <CategoryBrowse />
-      <FeaturedOppSection />
+      <FeaturedOppSection featured={featuredOpportunities} />
       {/*CTA section */}
       <section
         className="w-full bg-linear-to-r from-primary-500

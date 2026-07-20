@@ -1,33 +1,36 @@
-import type { Opportunity } from "@/utils/mockData";
-import OpportunityCard from "@/components/opportunitiesPage/OpportunityCard";
-import allOpportunities from "@/utils/mockData";
+"use client";
 
-export default function FeaturedOppSection() {
-  const featuredOpportunities = allOpportunities.filter(
-    (opportunity) => opportunity.featured === true,
+import { useEffect, useState } from "react";
+import OpportunityCard from "@/components/opportunitiesPage/OpportunityCard";
+import type { Opportunity } from "@/utils/mockData";
+
+function getRandomThree(pool: Opportunity[]): Opportunity[] {
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 3);
+}
+
+export default function FeaturedOpportunities({
+  featured,
+}: {
+  featured: Opportunity[];
+}) {
+  const [visible, setVisible] = useState<Opportunity[]>(() =>
+    getRandomThree(featured),
   );
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(getRandomThree(featured));
+    }, 40000);
+
+    return () => clearInterval(interval);
+  }, [featured]);
+
   return (
-    <section
-      className="flex flex-col w-full bg-white dark:bg-slate-950
-         py-12 px-6 md:px-12"
-    >
-      <h1
-        className="font-bold text-3xl text-slate-900
-         dark:text-slate-50 sm:text-4xl my-5 text-center"
-      >
-        Featured Opportunities
-      </h1>
-      <div
-        className="grid gap-6 sm:grid-cols-1 md:grid-cols-2
-            xl:grid-cols-3 md:gap-12 md:mt-20 md:mb-20"
-      >
-        {featuredOpportunities
-          .map((opportunity: Opportunity) => (
-            <OpportunityCard key={opportunity.id} opportunity={opportunity} />
-          ))
-          .slice(0, 3)}
-      </div>
-    </section>
+    <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:gap-12 md:mt-20 md:mb-20">
+      {visible.map((opportunity) => (
+        <OpportunityCard key={opportunity.id} opportunity={opportunity} />
+      ))}
+    </div>
   );
 }
