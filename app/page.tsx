@@ -7,7 +7,7 @@ import { allOpportunities } from "@/utils/mockData";
 
 export default function Home() {
   const featuredOpportunities = allOpportunities.filter(
-    (o) => o.featured === true,
+    (opportunity) => opportunity.featured === true,
   );
   return (
     <main

@@ -8,6 +8,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { AddOppSchema } from "@/app/validation/AddOppSchema";
 import { useOpportunityContext } from "@/context/OpportunityContext";
 import { useTheme } from "@/context/ThemeContext";
+import ConfirmModal from "@/components/opportunitiesPage/ConfirmModal";
 import type {
   Opportunity,
   OpportunityCategory,
@@ -35,6 +36,8 @@ export default function EditOpportunityPage() {
   const { opportunities, updateOpportunity } = useOpportunityContext();
   const { isDark } = useTheme();
   const [submitMessage, setSubmitMessage] = useState("");
+  const [showSaveConfirm, setShowSaveConfirm] = useState(false);
+  const [pendingData, setPendingData] = useState<FormData | null>(null);
 
   const opportunity = useMemo(() => {
     return opportunities.find((item) => item.id === params.id);
@@ -74,61 +77,55 @@ export default function EditOpportunityPage() {
     });
   }, [opportunity, reset]);
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (!opportunity) return;
+  // RHF validates first — this only runs if the form is valid
+  const onValidated: SubmitHandler<FormData> = (data) => {
+    setPendingData(data);
+    setShowSaveConfirm(true);
+  };
 
-    const requirements = data.requirements
+  // Runs only when the user taps "Save" inside the modal
+  const confirmSave = () => {
+    if (!opportunity || !pendingData) return;
+
+    const requirements = pendingData.requirements
       .split(",")
-      .map((item) => item.trim())
+      .map((i) => i.trim())
       .filter(Boolean);
-    const tags = data.tags
+    const tags = pendingData.tags
       .split(",")
-      .map((item) => item.trim())
+      .map((i) => i.trim())
       .filter(Boolean);
 
     const updatedOpportunity: Opportunity = {
       ...opportunity,
-      title: data.title,
-      organization: data.organization,
-      category: data.category as OpportunityCategory,
-      deadline: data.deadline,
-      description: data.description,
-      location: data.location,
-      workMode: data.workMode as WorkMode,
+      title: pendingData.title,
+      organization: pendingData.organization,
+      category: pendingData.category as OpportunityCategory,
+      deadline: pendingData.deadline,
+      description: pendingData.description,
+      location: pendingData.location,
+      workMode: pendingData.workMode as WorkMode,
       requirements,
-      applyLink: data.applyLink,
-      type: data.type,
+      applyLink: pendingData.applyLink,
+      type: pendingData.type,
       tags,
-      featured: data.featured,
+      featured: pendingData.featured,
     };
 
     updateOpportunity(updatedOpportunity);
+    setShowSaveConfirm(false);
     setSubmitMessage("Opportunity updated successfully.");
     router.push(`/opportunities/${opportunity.id}`);
   };
 
   if (!opportunity) {
     return (
-      <main
-        className={`min-h-screen px-4 py-12 sm:px-6 lg:px-8 lg:py-16 transition-colors duration-200 ${
-          isDark ? "bg-slate-950 text-slate-50" : "bg-slate-50 text-slate-900"
-        }`}
-      >
-        <div
-          className={`mx-auto max-w-3xl rounded-3xl border p-8 text-center shadow-sm ${
-            isDark
-              ? "border-slate-800 bg-slate-900"
-              : "border-slate-200 bg-white"
-          }`}
-        >
-          <h1
-            className={`text-2xl font-semibold ${isDark ? "text-slate-50" : "text-slate-900"}`}
-          >
+      <main className="min-h-screen bg-slate-50 px-4 py-12 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-50 sm:px-6 lg:px-8 lg:py-16">
+        <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-50">
             Opportunity not found
           </h1>
-          <p
-            className={`mt-3 text-sm ${isDark ? "text-slate-300" : "text-slate-600"}`}
-          >
+          <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
             The opportunity you are trying to edit no longer exists.
           </p>
           <Link
@@ -180,7 +177,7 @@ export default function EditOpportunityPage() {
           </Link>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-8">
+        <form onSubmit={handleSubmit(onValidated)} className="mt-8 space-y-8">
           {submitMessage ? (
             <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
               {submitMessage}
@@ -481,6 +478,16 @@ export default function EditOpportunityPage() {
           </div>
         </form>
       </div>
+
+      <ConfirmModal
+        isOpen={showSaveConfirm}
+        title="Save these changes?"
+        message="This will update the opportunity with the new details you entered."
+        confirmLabel="Save"
+        cancelLabel="Keep editing"
+        onConfirm={confirmSave}
+        onCancel={() => setShowSaveConfirm(false)}
+      />
     </main>
   );
 }
