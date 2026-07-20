@@ -122,15 +122,19 @@ components/
 ├── about/
 ├── dashboard/
 ├── opportunitiesPage/
-└── common/
 
 context/
 ├── ThemeContext.tsx
 └── OpportunityContext.tsx
 
 utils/
-├── mockData.ts                  # 120 seeded opportunity records
+├── mockData.ts                  # 120 seeded opportunity records(mock data)
 └── Constants.ts
+
+public/
+├── about/ 
+└── common/
+
 ```
 
 ## 🚀 How to Run Locally
@@ -210,6 +214,7 @@ Built by **Faezah Ahmadi** as a final capstone project — Next.js, TypeScript, 
 <img width="1366" height="728" alt="5" src="https://github.com/user-attachments/assets/b33a049b-10e9-41ec-a216-844822eeb177" />
 <img width="1366" height="599" alt="26" src="https://github.com/user-attachments/assets/6bd2700f-cf99-45e3-b809-c5913c791beb" />
 <img width="1366" height="687" alt="25" src="https://github.com/user-attachments/assets/251c3e3f-4eb7-4075-befa-5da596d13eec" />
+<img width="1366" height="709" alt="27" src="https://github.com/user-attachments/assets/73246bf5-ff04-4659-9d5e-f60b18d1397f" />
 
 <img width="1366" height="703" alt="4" src="https://github.com/user-attachments/assets/6c8993a4-89d2-4079-9444-9ef9b552879f" />
 
