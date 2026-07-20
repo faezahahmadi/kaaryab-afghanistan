@@ -122,15 +122,18 @@ components/
 ├── about/
 ├── dashboard/
 ├── opportunitiesPage/
-└── common/
 
 context/
 ├── ThemeContext.tsx
 └── OpportunityContext.tsx
 
 utils/
-├── mockData.ts                  # 120 seeded opportunity records
+├── mockData.ts                  # 120 seeded opportunity records(mock data)
 └── Constants.ts
+public/
+├── about/ 
+└── common/
+
 ```
 
 ## 🚀 How to Run Locally
