@@ -4,6 +4,13 @@ An opportunity finder platform helping Afghan youth discover jobs, internships, 
 
 Note: All data is Mock data, so they are only for learning purpose.
 
+## 🔗 Live Demo
+
+https://kaaryab-afghanistan-liart.vercel.app/
+
+## 💻 GitHub Repository
+
+https://github.com/faezzahahmadi/kaaryab-afghanistan.git
 ---
 
 ## 📖 Project Description
@@ -219,14 +226,6 @@ cd kaaryab-afghanistan
    
    npm run build
 npm start
-
-## 🔗 Live Demo
-
-https://kaaryab-afghanistan-liart.vercel.app/
-
-## 💻 GitHub Repository
-
-https://github.com/faezzahahmadi/kaaryab-afghanistan.git
 
 ## 🔮 Future Improvements
 
