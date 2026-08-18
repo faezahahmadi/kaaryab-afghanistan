@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { useOpportunityContext } from "@/context/OpportunityContext";
-import ConfirmModal from "@/components/opportunitiesPage/ConfirmModal";
+import dynamic from "next/dynamic";
+
+// Lazy-loaded: only needed once someone triggers a destructive action.
+const ConfirmModal = dynamic(() => import("@/components/opportunitiesPage/ConfirmModal"));
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (

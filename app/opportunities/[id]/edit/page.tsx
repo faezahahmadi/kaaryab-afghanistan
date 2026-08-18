@@ -8,12 +8,16 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { AddOppSchema } from "@/app/validation/AddOppSchema";
 import { useOpportunityContext } from "@/context/OpportunityContext";
 import { useTheme } from "@/context/ThemeContext";
-import ConfirmModal from "@/components/opportunitiesPage/ConfirmModal";
+import dynamic from "next/dynamic";
 import type {
   Opportunity,
   OpportunityCategory,
   WorkMode,
 } from "@/utils/mockData";
+
+// Lazy-loaded: this modal is only ever needed after a save action, so there's
+// no reason to ship it in the initial bundle for this page.
+const ConfirmModal = dynamic(() => import("@/components/opportunitiesPage/ConfirmModal"));
 
 type FormData = {
   title: string;

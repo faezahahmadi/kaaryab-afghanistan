@@ -1,5 +1,6 @@
 import { Briefcase,  Building2, Users } from "lucide-react";
 import { NavLink, Categories} from "../types/layout.types";
+import type { WorkMode } from "./mockData";
 import {
 
   GraduationCap,
@@ -87,6 +88,8 @@ export const CATEGORY_ICONS: Record<string, React.ElementType> = {
   "Training Program": TrendingUp,
   "Volunteer Work": Handshake,
 };
+export const WORK_MODES: WorkMode[] = ["Remote", "On-site", "Hybrid"];
+
 export const CHART_COLORS = [
   "#10b981",
   "#3b82f6",

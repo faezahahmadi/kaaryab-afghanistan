@@ -10,6 +10,17 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 import { allOpportunities, type Opportunity } from "@/utils/mockData";
+import {
+  deriveSavedOpportunities,
+  extractSavedIds,
+  toggleSavedId,
+} from "@/utils/savedOpportunities";
+
+const OPPORTUNITIES_KEY = "karyaab-opportunities";
+const SAVED_IDS_KEY = "karyaab-saved-ids";
+// Legacy key from before saved items were stored as ids. Kept only for a
+// one-time migration on first load.
+const LEGACY_SAVED_KEY = "karyaab-saved-opportunities";
 
 type OpportunityContextValue = {
   opportunities: Opportunity[];
@@ -40,7 +51,7 @@ export function OpportunityProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const stored = window.localStorage.getItem("karyaab-opportunities");
+      const stored = window.localStorage.getItem(OPPORTUNITIES_KEY);
       if (!stored) {
         return allOpportunities;
       }
@@ -56,19 +67,30 @@ export function OpportunityProvider({ children }: { children: ReactNode }) {
     }
   });
 
-  const [savedOpportunities, setSavedOpportunities] = useState<Opportunity[]>(() => {
+  // Saved opportunities are stored as *ids only*. The full objects are always
+  // derived from the live `opportunities` array below, so editing or
+  // deleting an opportunity automatically stays in sync with anything saved
+  // elsewhere instead of drifting out of sync with a stale snapshot.
+  const [savedIds, setSavedIds] = useState<string[]>(() => {
     if (typeof window === "undefined") {
       return [];
     }
 
     try {
-      const stored = window.localStorage.getItem("karyaab-saved-opportunities");
-      if (!stored) {
-        return [];
+      const stored = window.localStorage.getItem(SAVED_IDS_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        return extractSavedIds(parsed);
       }
 
-      const parsed = JSON.parse(stored) as Opportunity[];
-      return Array.isArray(parsed) ? parsed : [];
+      // One-time migration from the old "store the whole object" format.
+      const legacy = window.localStorage.getItem(LEGACY_SAVED_KEY);
+      if (legacy) {
+        const parsedLegacy = JSON.parse(legacy);
+        return extractSavedIds(parsedLegacy);
+      }
+
+      return [];
     } catch {
       return [];
     }
@@ -76,18 +98,21 @@ export function OpportunityProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.localStorage.setItem("karyaab-opportunities", JSON.stringify(opportunities));
+      window.localStorage.setItem(OPPORTUNITIES_KEY, JSON.stringify(opportunities));
     }
   }, [opportunities]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.localStorage.setItem(
-        "karyaab-saved-opportunities",
-        JSON.stringify(savedOpportunities)
-      );
+      window.localStorage.setItem(SAVED_IDS_KEY, JSON.stringify(savedIds));
+      window.localStorage.removeItem(LEGACY_SAVED_KEY);
     }
-  }, [savedOpportunities]);
+  }, [savedIds]);
+
+  const savedOpportunities = useMemo(
+    () => deriveSavedOpportunities(opportunities, savedIds),
+    [opportunities, savedIds],
+  );
 
   const addOpportunity = (opportunity: Opportunity) => {
     setOpportunities((prev) => [opportunity, ...prev]);
@@ -101,20 +126,14 @@ export function OpportunityProvider({ children }: { children: ReactNode }) {
 
   const deleteOpportunity = (opportunityId: string) => {
     setOpportunities((prev) => prev.filter((item) => item.id !== opportunityId));
-    setSavedOpportunities((prev) => prev.filter((item) => item.id !== opportunityId));
+    setSavedIds((prev) => prev.filter((id) => id !== opportunityId));
   };
 
   const toggleSavedOpportunity = (opportunity: Opportunity) => {
-    setSavedOpportunities((prev) => {
-      const exists = prev.some((item) => item.id === opportunity.id);
-      return exists
-        ? prev.filter((item) => item.id !== opportunity.id)
-        : [opportunity, ...prev];
-    });
+    setSavedIds((prev) => toggleSavedId(prev, opportunity.id));
   };
 
-  const isSaved = (opportunityId: string) =>
-    savedOpportunities.some((item) => item.id === opportunityId);
+  const isSaved = (opportunityId: string) => savedIds.includes(opportunityId);
 
   const value = useMemo(
     () => ({
@@ -126,7 +145,7 @@ export function OpportunityProvider({ children }: { children: ReactNode }) {
       deleteOpportunity,
       isSaved,
     }),
-    [opportunities, savedOpportunities]
+    [opportunities, savedOpportunities, savedIds],
   );
 
   return createElement(OpportunityContext.Provider, { value }, children);
