@@ -188,7 +188,8 @@ utils/
 └── dashboardStats.ts            # Dashboard statistics
 
 tests/
-└── Utility unit tests ```
+└── Utility unit tests
+ ```
 
 
 ## 🚀 How to Run Locally
