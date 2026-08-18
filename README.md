@@ -263,6 +263,9 @@ Built by Faezah Ahmadi as a final capstone project — Next.js, TypeScript, and 
 <img width="1366" height="599" alt="26" src="https://github.com/user-attachments/assets/6bd2700f-cf99-45e3-b809-c5913c791beb" />
 <img width="1366" height="687" alt="25" src="https://github.com/user-attachments/assets/251c3e3f-4eb7-4075-befa-5da596d13eec" />
 <img width="1366" height="709" alt="27" src="https://github.com/user-attachments/assets/73246bf5-ff04-4659-9d5e-f60b18d1397f" />
+<img width="625" height="343" alt="30" src="https://github.com/user-attachments/assets/45c138c0-1aba-4e77-9b13-572ad078a6aa" />
+<img width="1232" height="414" alt="29" src="https://github.com/user-attachments/assets/284392c3-7d19-468b-b118-95e963b37c5d" />
+<img width="1363" height="645" alt="28" src="https://github.com/user-attachments/assets/1233b75a-0cba-4f27-ad6d-e7940bb8db50" />
 
 <img width="1366" height="703" alt="4" src="https://github.com/user-attachments/assets/6c8993a4-89d2-4079-9444-9ef9b552879f" />
 
