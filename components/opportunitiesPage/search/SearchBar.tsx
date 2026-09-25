@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 import { useRouter } from "next/navigation";
 import { Clock, Search, SearchX, X } from "lucide-react";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -18,10 +24,14 @@ type ListItem =
   | { kind: "suggestion"; suggestion: SearchSuggestion }
   | { kind: "recent"; query: string };
 
-export default function SearchBar({ opportunities, onQueryChange }: SearchBarProps) {
+export default function SearchBar({
+  opportunities,
+  onQueryChange,
+}: SearchBarProps) {
   const router = useRouter();
   const { isDark } = useTheme();
-  const { recentSearches, addRecentSearch, clearRecentSearches } = useRecentSearches();
+  const { recentSearches, addRecentSearch, clearRecentSearches } =
+    useRecentSearches();
 
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -55,7 +65,10 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
   // Close the dropdown when clicking outside of it.
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         setIsFocused(false);
         setActiveIndex(-1);
       }
@@ -139,7 +152,9 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
             aria-label="Clear search"
             onClick={() => commitQuery("")}
             className={`shrink-0 rounded-full p-1 ${
-              isDark ? "text-slate-500 hover:bg-slate-800" : "text-slate-400 hover:bg-slate-100"
+              isDark
+                ? "text-slate-500 hover:bg-slate-800"
+                : "text-slate-400 hover:bg-slate-100"
             }`}
           >
             <X className="h-4 w-4" />
@@ -150,7 +165,9 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
       {dropdownOpen && (
         <div
           className={`absolute z-20 mt-2 w-full overflow-hidden rounded-lg border shadow-lg ${
-            isDark ? "border-slate-700 bg-slate-900" : "border-slate-200 bg-white"
+            isDark
+              ? "border-slate-700 bg-slate-900"
+              : "border-slate-200 bg-white"
           }`}
         >
           {showRecent && (
@@ -174,8 +191,12 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
 
           {showSuggestions && suggestions.length === 0 ? (
             <div className="flex flex-col items-center gap-2 px-4 py-6 text-center">
-              <SearchX className={`h-5 w-5 ${isDark ? "text-slate-600" : "text-slate-300"}`} />
-              <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}>
+              <SearchX
+                className={`h-5 w-5 ${isDark ? "text-slate-600" : "text-slate-300"}`}
+              />
+              <p
+                className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}
+              >
                 No matching opportunities
               </p>
             </div>
@@ -184,7 +205,9 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
               {listItems.map((item, index) => {
                 const isActive = index === activeIndex;
                 const key =
-                  item.kind === "suggestion" ? `s-${item.suggestion.id}` : `r-${item.query}`;
+                  item.kind === "suggestion"
+                    ? `s-${item.suggestion.id}`
+                    : `r-${item.query}`;
                 return (
                   <li key={key}>
                     <button
@@ -203,18 +226,23 @@ export default function SearchBar({ opportunities, onQueryChange }: SearchBarPro
                     >
                       {item.kind === "recent" ? (
                         <>
-                          <Clock className={`h-4 w-4 shrink-0 ${isDark ? "text-slate-500" : "text-slate-400"}`} />
+                          <Clock
+                            className={`h-4 w-4 shrink-0 ${isDark ? "text-slate-500" : "text-slate-400"}`}
+                          />
                           <span className="truncate">{item.query}</span>
                         </>
                       ) : (
                         <div className="min-w-0">
-                          <p className="truncate font-medium">{item.suggestion.title}</p>
+                          <p className="truncate font-medium">
+                            {item.suggestion.title}
+                          </p>
                           <p
                             className={`truncate text-xs ${
                               isDark ? "text-slate-500" : "text-slate-500"
                             }`}
                           >
-                            {item.suggestion.organization} • {item.suggestion.category}
+                            {item.suggestion.organization} •{" "}
+                            {item.suggestion.category}
                           </p>
                         </div>
                       )}

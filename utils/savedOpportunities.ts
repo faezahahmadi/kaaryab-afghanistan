@@ -1,8 +1,8 @@
 import type { Opportunity } from "./mockData";
 
 /**
- * Toggles an id in a saved-id list, keeping the most-recently-saved id first.
- * Pure function so the "save" behaviour can be unit tested without React.
+  Toggles an id in a saved-id list, keeping the most-recently-saved id first.
+  Pure function so the "save" behaviour can be unit tested without React.
  */
 export function toggleSavedId(ids: string[], id: string): string[] {
   return ids.includes(id) ? ids.filter((existing) => existing !== id) : [id, ...ids];
@@ -13,10 +13,10 @@ export function removeSavedId(ids: string[], id: string): string[] {
 }
 
 /**
- * Derives the list of saved Opportunity objects from the *current* list of
- * opportunities, in saved order. Because this always reads from the live
- * opportunities array, a saved item automatically reflects edits made to it
- * elsewhere in the app instead of drifting out of sync.
+  Derives the list of saved Opportunity objects from the *current* list of
+  opportunities, in saved order. Because this always reads from the live
+  opportunities array, a saved item automatically reflects edits made to it
+  elsewhere in the app instead of drifting out of sync.
  */
 export function deriveSavedOpportunities(
   opportunities: Opportunity[],
@@ -29,9 +29,9 @@ export function deriveSavedOpportunities(
 }
 
 /**
- * Best-effort migration for the old storage format, which stored full saved
- * Opportunity objects (a snapshot) instead of ids. Accepts unknown parsed
- * JSON and returns a clean string[] of ids.
+  Best-effort migration for the old storage format, which stored full saved
+  Opportunity objects (a snapshot) instead of ids. Accepts unknown parsed
+  JSON and returns a clean string[] of ids.
  */
 export function extractSavedIds(parsed: unknown): string[] {
   if (!Array.isArray(parsed)) return [];

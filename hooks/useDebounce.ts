@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Returns a debounced copy of `value` that only updates after `delayMs`
- * has passed without `value` changing again.
+/*
+Returns a debounced copy of `value` that only updates after `delayMs`
+has passed without `value` changing again.
  */
 export function useDebounce<T>(value: T, delayMs = 300): T {
   const [debounced, setDebounced] = useState(value);

@@ -17,9 +17,9 @@ function readStored(): string[] {
   }
 }
 
-/**
- * Tracks the person's most recent (non-empty) search queries, most recent
- * first, capped at MAX_RECENT and de-duplicated.
+/*
+  Tracks the person's most recent (non-empty) search queries, most recent
+  first, capped at MAX_RECENT and de-duplicated.
  */
 export function useRecentSearches() {
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -33,7 +33,9 @@ export function useRecentSearches() {
     if (!trimmed) return;
 
     setRecentSearches((prev) => {
-      const next = [trimmed, ...prev.filter((item) => item.toLowerCase() !== trimmed.toLowerCase())].slice(
+      const next = [trimmed, 
+        ...prev.filter((item) => item.toLowerCase() !== trimmed.toLowerCase())]
+        .slice(
         0,
         MAX_RECENT,
       );

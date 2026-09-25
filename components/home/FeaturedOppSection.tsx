@@ -14,11 +14,15 @@ export default function FeaturedOpportunities({
 }: {
   featured: Opportunity[];
 }) {
+  // Use a deterministic initial slice so server and client HTML match.
   const [visible, setVisible] = useState<Opportunity[]>(() =>
-    getRandomThree(featured),
+    featured.slice(0, Math.min(3, featured.length)),
   );
 
   useEffect(() => {
+    // After hydration, pick random items and then rotate on an interval.
+    setVisible(getRandomThree(featured));
+
     const interval = setInterval(() => {
       setVisible(getRandomThree(featured));
     }, 40000);

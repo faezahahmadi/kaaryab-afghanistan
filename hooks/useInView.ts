@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/**
- * Reports whether the returned ref's element has scrolled into the viewport
- * (once). Used to defer mounting heavy components (charts, large modals)
- * until they're actually about to be seen, instead of on initial page load.
+/*
+ Reports whether the returned ref's element has scrolled into the viewport
+ (once). Used to defer mounting heavy components (charts, large modals)
+ until they're actually about to be seen, instead of on initial page load.
  */
 export function useInView<T extends HTMLElement>(rootMargin = "200px") {
   const ref = useRef<T | null>(null);

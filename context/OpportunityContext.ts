@@ -46,55 +46,54 @@ export const OpportunityContext = createContext<OpportunityContextValue>(default
 
 export function OpportunityProvider({ children }: { children: ReactNode }) {
   const [opportunities, setOpportunities] = useState<Opportunity[]>(() => {
-    if (typeof window === "undefined") {
-      return allOpportunities;
-    }
+    return allOpportunities;
+  });
 
+  /* Saved opportunities are stored as *ids only*. The full objects are always
+   derived from the live `opportunities` array below, so editing or
+   deleting an opportunity automatically stays in sync with anything saved
+   elsewhere instead of drifting out of sync with a stale snapshot.*/
+
+  const [savedIds, setSavedIds] = useState<string[]>(() => {
+    return [];
+  });
+
+  // Apply any locally stored snapshot after mount so the initial server HTML
+  // matches the canonical `allOpportunities` output.
+  useEffect(() => {
     try {
       const stored = window.localStorage.getItem(OPPORTUNITIES_KEY);
-      if (!stored) {
-        return allOpportunities;
-      }
-
-      const parsed = JSON.parse(stored) as Opportunity[];
-      if (!Array.isArray(parsed)) {
-        return allOpportunities;
-      }
-
-      return parsed;
-    } catch {
-      return allOpportunities;
-    }
-  });
-
-  // Saved opportunities are stored as *ids only*. The full objects are always
-  // derived from the live `opportunities` array below, so editing or
-  // deleting an opportunity automatically stays in sync with anything saved
-  // elsewhere instead of drifting out of sync with a stale snapshot.
-  const [savedIds, setSavedIds] = useState<string[]>(() => {
-    if (typeof window === "undefined") {
-      return [];
-    }
-
-    try {
-      const stored = window.localStorage.getItem(SAVED_IDS_KEY);
       if (stored) {
-        const parsed = JSON.parse(stored);
-        return extractSavedIds(parsed);
+        const parsed = JSON.parse(stored) as Opportunity[];
+        if (Array.isArray(parsed)) {
+          setOpportunities(parsed);
+        }
       }
 
-      // One-time migration from the old "store the whole object" format.
-      const legacy = window.localStorage.getItem(LEGACY_SAVED_KEY);
-      if (legacy) {
-        const parsedLegacy = JSON.parse(legacy);
-        return extractSavedIds(parsedLegacy);
+      const storedIds = window.localStorage.getItem(SAVED_IDS_KEY);
+      if (storedIds) {
+        try {
+          const parsed = JSON.parse(storedIds);
+          setSavedIds(extractSavedIds(parsed));
+        } catch {
+          // ignore malformed saved ids
+        }
+      } else {
+        // One-time migration from legacy saved snapshot format.
+        const legacy = window.localStorage.getItem(LEGACY_SAVED_KEY);
+        if (legacy) {
+          try {
+            const parsedLegacy = JSON.parse(legacy);
+            setSavedIds(extractSavedIds(parsedLegacy));
+          } catch {
+            // ignore
+          }
+        }
       }
-
-      return [];
     } catch {
-      return [];
+      // Ignore any localStorage errors; keep canonical server data.
     }
-  });
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
