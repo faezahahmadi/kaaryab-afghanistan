@@ -1,8 +1,16 @@
 # KaarYab Afghanistan
 
-**An opportunity finder platform helping Afghan youth discover jobs, internships, scholarships, online courses, training programs, and volunteer work — all in one place.**
+An opportunity finder platform helping Afghan youth discover jobs, internships, scholarships, online courses, training programs, and volunteer work — all in one place.
 
-**Note: All data is Mock data, so they are only for learning purpose.**
+Note: All data is Mock data, so they are only for learning purpose.
+
+## 🔗 Live Demo
+
+https://kaaryab-afghanistan-liart.vercel.app/
+
+## 💻 GitHub Repository
+
+https://github.com/faezzahahmadi/kaaryab-afghanistan.git
 ---
 
 ## 📖 Project Description
@@ -10,6 +18,8 @@
 KaarYab Afghanistan is a modern, full-featured web application built as a final capstone project. It solves a real problem: opportunities for Afghan students, graduates, and job seekers are scattered across social media, group chats, and unrelated websites — making them easy to miss and hard to compare.
 
 KaarYab brings jobs, scholarships, internships, online courses, training programs, and volunteer opportunities into a single, searchable, filterable, and easy-to-use platform.
+
+The project focuses on functionality, performance, reusable components, maintainability, and testable application logic.
 
 ## 🎯 Problem It Solves
 
@@ -25,78 +35,123 @@ Many young people in Afghanistan struggle to find reliable information about opp
 
 ## ✨ Features
 
-### Core Functionality
+**Core Functionality**
 
-- **Home Page** — Platform introduction, live statistics, featured opportunities, and category shortcuts
-- **Opportunities Page** — Full catalog in a responsive card grid with pagination
-- **Opportunity Details Page** — Dynamic route (`/opportunities/[id]`) with full opportunity information
-- **Add Opportunity Page** — Validated form to submit new opportunities
-- **Edit Opportunity Page** — Update any existing opportunity
-- **Saved Opportunities Page** — Personal bookmark list, persisted across sessions
-- **Dashboard Page** — Live statistics and analytics with interactive charts
-- **About Page** — Platform mission, vision, and core values
-- **Contact Page** — Message form for inquiries and suggestions
-- **Custom 404 (Not Found) Page** and **Loading State** — Consistent, on-brand experience for missing routes and async loading
+- Home Page — Platform introduction, live statistics, featured opportunities, and category shortcuts
+- Opportunities Page — Full catalog in a responsive card grid with pagination
+- Opportunity Details Page — Dynamic route ("/opportunities/[id]") with full opportunity information
+- Add Opportunity Page — Validated form to submit new opportunities
+- Edit Opportunity Page — Update any existing opportunity
+- Saved Opportunities Page — Personal bookmark list, persisted across sessions
+- Dashboard Page — Live statistics and analytics with interactive charts
+- About Page — Platform mission, vision, and core values
+- Contact Page — Message form for inquiries and suggestions
+- Custom 404 (Not Found) Page and Loading State — Consistent, on-brand experience for missing routes and async loading
 
-### Search & Filter
+## Search & Filter
 
 - Search opportunities by title
+- Advanced Search with debounced input and ranked search suggestions
+- Persisted Recent Searches — Previously searched terms are saved for quick access
+- Keyboard Navigation — Navigate search suggestions with "↑" / "↓", select with "Enter", and close with "Esc"
+- No-results State — Clear feedback when no opportunities match the search
 - Filter by category (Job, Scholarship, Internship, Online Course, Training Program, Volunteer Work)
 - Filter by location
-- Filter by work mode (Remote / On-site / Hybrid)
+- Filter by Work Mode — Remote / On-site / Hybrid
 - Filter by deadline range (next 7 days, next 30 days, past)
 
-### CRUD & Data Persistence
+## CRUD & Data Persistence
 
-- **Create** — Add Opportunity form with full validation
-- **Read** — Browse, search, and view opportunity details
-- **Update** — Edit any opportunity's details
-- **Delete** — Remove an opportunity, protected by a confirmation modal
-- All opportunity and saved-bookmark data persists in **LocalStorage** via **React Context API**, so changes survive page refreshes and browser sessions
+- Create — Add Opportunity form with full validation
+- Read — Browse, search, and view opportunity details
+- Update — Edit any opportunity's details
+- Delete — Remove an opportunity, protected by a confirmation modal
+- All opportunity and saved-bookmark data persists in LocalStorage via React Context API, so changes survive page refreshes and browser sessions
+- Saved opportunities derive from the current opportunity data, keeping saved items synchronized with the latest opportunity information
 
-### Save Opportunity
+## Save Opportunity
 
 - One-tap bookmarking from the opportunity card or detail page
 - Dedicated Saved Opportunities page
 - Save state persisted independently in LocalStorage
+- Saved opportunities remain synchronized with the current opportunity data
 
-### Dashboard & Analytics
+## Dashboard & Analytics
 
 - Total opportunities, and totals broken down per category
 - Featured opportunity count
-- Expiring-soon opportunities (sorted by nearest deadline)
+- Expiring-soon opportunities, sorted by nearest deadline
 - Recent submissions feed
-- **Pie chart** — distribution of opportunities by category (built with **Recharts**)
-- **Bar chart** — breakdown of opportunities by type (built with **Recharts**)
+- Pie chart — distribution of opportunities by category (built with Recharts)
+- Bar chart — breakdown of opportunities by type (built with Recharts)
 - All charts and stats update live as opportunities are added, edited, or removed
 
-### UI/UX
+## Performance
+
+- Lazy-loaded Recharts — Dashboard charts are loaded dynamically using "next/dynamic"
+- Code Splitting — Chart components are separated from the initial page bundle
+- Viewport-based Chart Loading — Charts only mount when they enter the viewport using "IntersectionObserver"
+- Chart Loading Skeletons — Skeleton UI is displayed while charts are loading
+- Lazy-loaded ConfirmModal — Confirmation modal is dynamically loaded on opportunity detail and edit pages
+- Debounced Search — Search input is optimized to avoid unnecessary search operations
+
+## Reusable Hooks
+
+- "useDebounce" — Debounces search input for a smoother and more efficient search experience
+- "useRecentSearches" — Manages persisted recent searches
+- "useInView" — Detects when elements enter the viewport using "IntersectionObserver"
+
+## Utility Modules
+
+Pure, testable application logic is separated into dedicated utility modules:
+
+- "utils/search.ts" — Search and ranking logic
+- "utils/savedOpportunities.ts" — Saved opportunity synchronization and related logic
+- "utils/dashboardStats.ts" — Dashboard statistics and analytics calculations
+
+## Testing
+
+- 22 unit tests covering the three new utility modules
+- Tests use Node's built-in "node:test" framework
+- No additional testing dependencies were required
+- Tests cover:
+  - Search and ranking logic
+  - Saved opportunity logic
+  - Dashboard statistics
+
+Run the test suite with:
+
+npm test
+
+UI/UX
 
 - Fully responsive layout — mobile, tablet, and desktop
-- Light and dark mode, powered by Tailwind's `dark:` variant and a theme toggle in the navbar
+- Light and dark mode, powered by Tailwind's "dark:" variant and a theme toggle in the navbar
 - Clean, reusable navbar, footer, cards, buttons, forms, and badges
 - Confirmation modal for destructive actions (deleting an opportunity)
 - Empty states (no saved opportunities, no search results, no expiring deadlines)
 - Custom loading and not-found states
+- Keyboard-accessible search experience
+- Responsive dashboard with interactive analytics
 
 ## 🛠️ Technologies Used
 
-| Category            | Technology                       |
-| ------------------- | -------------------------------- |
-| Framework           | Next.js 15 (App Router)          |
-| UI Library          | React 19                         |
-| Language            | TypeScript                       |
-| Styling             | Tailwind CSS v4                  |
-| Forms               | React Hook Form                  |
-| Validation          | Yup (`@hookform/resolvers/yup`)  |
-| State & Persistence | React Context API + LocalStorage |
-| Charts              | Recharts                         |
-| Icons               | Lucide React                     |
-| Deployment          | Vercel                           |
-| Version Control     | Git & GitHub                     |
+Category| Technology
+Framework| Next.js 15 (App Router)
+UI Library| React 19
+Language| TypeScript
+Styling| Tailwind CSS v4
+Forms| React Hook Form
+Validation| Yup ("@hookform/resolvers/yup")
+State & Persistence| React Context API + LocalStorage
+Charts| Recharts
+Icons| Lucide React
+Testing| Node.js "node:test"
+Performance| "next/dynamic" + IntersectionObserver
+Deployment| Vercel
+Version Control| Git & GitHub
 
 ## 📂 Project Structure (high level)
-
 ```
 app/
 ├── page.tsx                     # Home
@@ -121,72 +176,65 @@ components/
 ├── home/
 ├── about/
 ├── dashboard/
-├── opportunitiesPage/
+└── opportunitiesPage/
 
 context/
 ├── ThemeContext.tsx
 └── OpportunityContext.tsx
 
+hooks/
+├── useDebounce.ts
+├── useRecentSearches.ts
+└── useInView.ts
+
 utils/
-├── mockData.ts                  # 120 seeded opportunity records(mock data)
-└── Constants.ts
+├── mockData.ts                  # 120 seeded opportunity records (mock data)
+├── Constants.ts
+├── search.ts                    # Search and ranking logic
+├── savedOpportunities.ts        # Saved opportunity logic
+└── dashboardStats.ts            # Dashboard statistics
 
-public/
-├── about/ 
-└── common/
+tests/
+└── Utility unit tests
+ ```
 
-```
 
 ## 🚀 How to Run Locally
 
-1. **Clone the repository**
+1. Clone the repository
+   
+   git clone https://github.com/faezzahahmadi/kaaryab-afghanistan.git
+cd kaaryab-afghanistan
 
-   ```bash
-   git clone <https://github.com/faezahahmadi/kaaryab-afghanistan.git>
-   cd kaaryab-afghanistan
-   ```
-
-2. **Install dependencies**
-
-   ```bash
+2. Install dependencies
+   
    npm install
-   ```
 
-3. **Run the development server**
-
-   ```bash
+3. Run the development server
+   
    npm run dev
-   ```
 
-4. **Open in your browser**
-
-   ```
+4. Open in your browser
+   
    http://localhost:3000
-   ```
 
-5. **Build for production**
-   ```bash
+5. Run tests
+   
+   npm test
+
+6. Build for production
+   
    npm run build
-   npm start
-   ```
-
-
-## 🔗 Live Demo
-
-https://kaaryab-afghanistan-liart.vercel.app/
-
-## 💻 GitHub Repository
-
-https://github.com/faezahahmadi/kaaryab-afghanistan.git
+npm start
 
 ## 🔮 Future Improvements
 
-- **Authentication** — User accounts so saved opportunities and submissions are tied to a real profile instead of browser LocalStorage
-- Replace LocalStorage/Context with a proper backend (database + API routes) so data persists across devices
+- Authentication — User accounts so saved opportunities and submissions are tied to a real profile instead of browser LocalStorage
+- 
 
-## 👤 Author
+👤 Author
 
-Built by **Faezah Ahmadi** as a final capstone project — Next.js, TypeScript, and Tailwind CSS.
+Built by Faezah Ahmadi as a final capstone project — Next.js, TypeScript, and Tailwind CSS.
 
 ## 📸 Screenshots
 <img width="1365" height="730" alt="1" src="https://github.com/user-attachments/assets/58eacad1-c0e5-4aae-b6f7-f6b10c729fd3" />
@@ -215,6 +263,9 @@ Built by **Faezah Ahmadi** as a final capstone project — Next.js, TypeScript, 
 <img width="1366" height="599" alt="26" src="https://github.com/user-attachments/assets/6bd2700f-cf99-45e3-b809-c5913c791beb" />
 <img width="1366" height="687" alt="25" src="https://github.com/user-attachments/assets/251c3e3f-4eb7-4075-befa-5da596d13eec" />
 <img width="1366" height="709" alt="27" src="https://github.com/user-attachments/assets/73246bf5-ff04-4659-9d5e-f60b18d1397f" />
+<img width="625" height="343" alt="30" src="https://github.com/user-attachments/assets/45c138c0-1aba-4e77-9b13-572ad078a6aa" />
+<img width="1232" height="414" alt="29" src="https://github.com/user-attachments/assets/284392c3-7d19-468b-b118-95e963b37c5d" />
+<img width="1363" height="645" alt="28" src="https://github.com/user-attachments/assets/1233b75a-0cba-4f27-ad6d-e7940bb8db50" />
 
 <img width="1366" height="703" alt="4" src="https://github.com/user-attachments/assets/6c8993a4-89d2-4079-9444-9ef9b552879f" />
 
