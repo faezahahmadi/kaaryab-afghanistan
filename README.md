@@ -19,7 +19,7 @@ KaarYab Afghanistan is a modern, full-featured web application built as a final 
 
 KaarYab brings jobs, scholarships, internships, online courses, training programs, and volunteer opportunities into a single, searchable, filterable, and easy-to-use platform.
 
-The project focuses on functionality, performance, reusable components, maintainability, and testable application logic.
+The project focuses on functionality, performance, reusable components, and maintainable application logic.
 
 ## 🎯 Problem It Solves
 
@@ -103,25 +103,11 @@ Many young people in Afghanistan struggle to find reliable information about opp
 
 ## Utility Modules
 
-Pure, testable application logic is separated into dedicated utility modules:
+Application logic is separated into dedicated utility modules:
 
 - "utils/search.ts" — Search and ranking logic
 - "utils/savedOpportunities.ts" — Saved opportunity synchronization and related logic
 - "utils/dashboardStats.ts" — Dashboard statistics and analytics calculations
-
-## Testing
-
-- 22 unit tests covering the three new utility modules
-- Tests use Node's built-in "node:test" framework
-- No additional testing dependencies were required
-- Tests cover:
-  - Search and ranking logic
-  - Saved opportunity logic
-  - Dashboard statistics
-
-Run the test suite with:
-
-npm test
 
 UI/UX
 
@@ -146,7 +132,6 @@ Validation| Yup ("@hookform/resolvers/yup")
 State & Persistence| React Context API + LocalStorage
 Charts| Recharts
 Icons| Lucide React
-Testing| Node.js "node:test"
 Performance| "next/dynamic" + IntersectionObserver
 Deployment| Vercel
 Version Control| Git & GitHub
@@ -194,8 +179,6 @@ utils/
 ├── savedOpportunities.ts        # Saved opportunity logic
 └── dashboardStats.ts            # Dashboard statistics
 
-tests/
-└── Utility unit tests
  ```
 
 
@@ -218,11 +201,7 @@ cd kaaryab-afghanistan
    
    http://localhost:3000
 
-5. Run tests
-   
-   npm test
-
-6. Build for production
+5. Build for production
    
    npm run build
 npm start
@@ -268,4 +247,3 @@ Built by Faezah Ahmadi as a final capstone project — Next.js, TypeScript, and 
 <img width="1363" height="645" alt="28" src="https://github.com/user-attachments/assets/1233b75a-0cba-4f27-ad6d-e7940bb8db50" />
 
 <img width="1366" height="703" alt="4" src="https://github.com/user-attachments/assets/6c8993a4-89d2-4079-9444-9ef9b552879f" />
-
